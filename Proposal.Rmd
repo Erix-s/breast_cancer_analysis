@@ -6,7 +6,7 @@ output: github_document
 ```{r, echo=FALSE, message=FALSE}
 # Load necessary libraries
 library(tidyverse)
-library(gt)
+library(knitr)
 ```
 
 ## Team Member:  
@@ -87,7 +87,7 @@ Our team will produc a fully reproducible, Github-hosted project that identify p
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Data
-timeline <- tibble::tibble(
+timeline <- tibble(
   `Week / Date` = c(
     "Week 1 (Nov 11–17)",
     "Week 2 (Nov 18–24)",
@@ -106,25 +106,13 @@ timeline <- tibble::tibble(
     "Kaplan–Meier & Cox models; test associations; interpret results; finalize figures & tables.",
     "Finish report & website; record 2-min screencast; polish repo; submit by Dec 6 (11:59 PM)."
   )
+) %>%
+  mutate(`Key Tasks` = str_wrap(`Key Tasks`, width = 60) |> str_replace_all("\n", "<br>"))
+
+kable(
+  timeline,
+  format = "pipe",
+  align = c("l","l","l"),
+  escape = FALSE  # allow <br> for line breaks
 )
-
-# Pretty table with gt
-timeline %>%
-  gt() %>%
-  tab_header(title = md("**Project Timeline (4 Weeks)**")) %>%
-  cols_width(
-    `Week / Date` ~ px(180),
-    Milestone ~ px(220),
-    `Key Tasks` ~ px(420)
-  ) %>%
-  tab_options(
-    table.font.size = px(14),
-    data_row.padding = px(6)
-  ) %>%
-  fmt_markdown(columns = everything())
 ```
-
-
-
-
-
