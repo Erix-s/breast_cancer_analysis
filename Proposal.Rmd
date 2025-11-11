@@ -47,3 +47,38 @@ Our team will produc a fully reproducible, Github-hosted project that identify p
 
 * **GitHub Reprository**: A well-organized repository containing all code, data processing scripts, and documentation to ensure full reproducibility of the analysis.
 
+## Planned Analysis/Visualization/Coding Challanges 
+
+### Planned Analysis: 
+ 
+* Descriptive statistic and distribution of demographics and clincial variables 
+
+* Correlation and association test between tumor characteristics/lymph node characteristics/hormone receptor status and survival outcomes
+
+* Kaplan-Meier surivival analysis 
+
+* Cox proportional hazards regression 
+
+### Visualizations:
+
+* Kaplan-Meier survival curves stratified by key variables (e.g., tumor stage, hormone receptor status)
+
+* Boxplots of tumor size by stage
+
+* Heatmap of variables correlation 
+
+### Coding Challenges:
+
+* Data cleaning and preprocessing of SEER dataset (if able to be)
+
+* Cleaning categorial variables in publicly available data set 
+
+* Reformating data for surival analysis 
+
+* Managing missing or inconcsistent data enteries. 
+
+
+
+
+
+
