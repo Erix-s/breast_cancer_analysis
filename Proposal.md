@@ -19,15 +19,15 @@ that shape disease prognosis and health equity.*
 Breast cancer remains one of the most prevalent disease worldwide,
 accounting for a substantial proportion of cancer incidence and health
 burden. Despite advances in early detection and treatment, disparities
-in outcomes is often suggested across demographic and biological groups.
+in outcomes is often observed across demographic and biological groups.
 Clinical outcomes are influenced by multiple factors, including tumor
-size, stage, lymph node involvement, and hormone recpeotor status.
+size, stage, lymph node involvement, and hormone receptor status.
 
 Understanding how patient characteristics, tumor biology, and receptor
 profiles influence survival and risk is essential for improving risk
-stratification and guide treatment decisions. This project aims to
-explore the relationship between factors predicting surivial outcome
-amoung patients who have breast cancer.
+stratification and guiding treatment decisions. This project aims to
+explore the relationship between the following factors predicting
+survival outcomes among patients with breast cancer.
 
 *This project starts with a public, de-identified dataset derived from
 the 2017 SEER (Surveillance, Epidemiology, and End Results) Program,
@@ -81,22 +81,22 @@ health equity.
 
 ## Final Product Plans
 
-Our team will produc a fully reproducible, Github-hosted project that
-identify predictors of surival in breast cancer. Deliverables will
-inluce.
+Our team will produce a fully reproducible, Github-hosted project that
+identify predictors of survival in breast cancer. Deliverables will
+include.
 
-- **Final Writtent Report**: A comprehensive report detailing workflow
+- **Final Written Report**: A comprehensive report detailing workflow
   following the required structure (Motivation, Related Work, Data,
-  Exploratory Analysis, Additional Analysis, Disucssion).
+  Exploratory Analysis, Additional Analysis, Discussion).
 
-- **Interactive Project Website**: Built uing R Markdown, hosted via
-  GitHub Pages, and design to communicate reulsts to a broad audiance.
+- **Interactive Project Website**: Built using R Markdown, hosted via
+  GitHub Pages, and design to communicate results to a broad audience.
 
-- **Tow-minute Video Summary**: A concise video presentation summarizing
+- **Two-minute Video Summary**: A concise video presentation summarizing
   key findings, methodology, and public health implications of the
   project that is embedded into the project webpage.
 
-- **GitHub Reprository**: A well-organized repository containing all
+- **GitHub Repository**: A well-organized repository containing all
   code, data processing scripts, and documentation to ensure full
   reproducibility of the analysis.
 
@@ -110,7 +110,7 @@ inluce.
 - Correlation and association test between tumor characteristics/lymph
   node characteristics/hormone receptor status and survival outcomes
 
-- Kaplan-Meier surivival analysis
+- Kaplan-Meier survival analysis
 
 - Cox proportional hazards regression
 
@@ -129,9 +129,9 @@ inluce.
 
 - Cleaning categorial variables in publicly available data set
 
-- Reformating data for surival analysis
+- Reformating data for survival analysis
 
-- Managing missing or inconcsistent data enteries.
+- Managing missing or inconsistent data enteries.
 
 ## Project Timeline
 
