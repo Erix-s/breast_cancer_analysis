@@ -21,3 +21,50 @@ output:
   
   
 
+  <h2 class="casefile-subtitle">Exhibit A: Breast Cancer Dataset</h2>
+
+  <p class="casefile-text">
+    This evidence file draws on the <strong>Breast Cancer</strong> dataset curated by Reihaneh Namdari and hosted on Kaggle.  
+    It is a cleaned subset of the US <em>Surveillance, Epidemiology, and End Results (SEER)</em> cancer registry and focuses on
+    women diagnosed with infiltrating duct and lobular carcinoma between 2006 and 2010.
+  </p>
+
+  <ul class="casefile-bullets">
+    <li><strong>Source:</strong> SEER population-based cancer registry (US National Cancer Institute), curated for Kaggle.</li>
+    <li><strong>Sample size:</strong> 4,024 female patients with breast cancer.</li>
+    <li><strong>Time frame:</strong> Diagnoses from 2006–2010, with follow-up for survival in months.</li>
+  </ul>
+
+  <h3 class="casefile-subheading">Key Evidence Fields</h3>
+
+  <p class="casefile-text">
+    Each “subject” in this case file includes 14 variables capturing demographic, tumor, and outcome information:
+  </p>
+
+  <ul class="casefile-bullets">
+    <li><strong>Demographics:</strong> Age at diagnosis, race, marital status.</li>
+    <li><strong>Tumor characteristics:</strong> Tumor size, histologic grade/differentiation, T stage, N stage, overall cancer stage, and extent of regional spread.</li>
+    <li><strong>Lymph node findings:</strong> Number of regional lymph nodes examined and number found positive.</li>
+    <li><strong>Hormone receptor status:</strong> Estrogen receptor (ER) and progesterone receptor (PR) status.</li>
+    <li><strong>Outcomes:</strong> Survival time in months and vital status (alive vs deceased).</li>
+  </ul>
+
+  <h3 class="casefile-subheading">How This Evidence Will Be Used</h3>
+
+  <p class="casefile-text">
+    In this investigation, the dataset serves as the primary evidence for exploring how clinical and pathological
+    features of breast cancer relate to patient survival. Using statistical and machine learning techniques, we will:
+  </p>
+
+  <ul class="casefile-bullets">
+    <li>Profile the “suspect” tumors by stage, receptor status, and lymph node involvement.</li>
+    <li>Identify patterns associated with better or worse survival outcomes.</li>
+    <li>Build predictive models that estimate prognosis based on baseline clinical characteristics.</li>
+  </ul>
+
+  <p class="casefile-text">
+    Think of this dataset as the master <strong>case ledger</strong>: each row is a patient, each column is a clue, and our
+    analytic tools will determine whether the evidence is strong enough to convict breast cancer of its deadly impact.
+  </p>
+
+</div>
