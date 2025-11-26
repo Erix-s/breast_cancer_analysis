@@ -1,0 +1,87 @@
+/* --- CASE FILE AESTHETIC --- */
+
+/* Background that looks like a manila folder */
+.casefile-wrapper {
+  background: #f2e7c9;                /* aged paper color */
+  border: 2px solid #b29f79;
+  padding: 40px;
+  margin-top: 20px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0,0,0,0.35);
+  font-family: "Courier New", monospace;
+}
+
+/* BLOOD SPLATTER OVERLAY */
+.casefile-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 130%;
+  height: 130%;
+  background-image: url("blood_splatter.png"); /* put your image in project directory */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
+  opacity: 0.25;                       /* subtle but visible */
+  pointer-events: none;
+  transform: rotate(-7deg);
+}
+
+/* RED STAMP */
+.blood-stamp {
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #8b0000;
+  font-weight: bold;
+  border: 3px solid #8b0000;
+  display: inline-block;
+  padding: 6px 14px;
+  transform: rotate(-8deg);
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  mix-blend-mode: multiply;
+}
+
+/* TITLES */
+.casefile-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: #2b2b2b;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.casefile-subtitle {
+  color: #8b0000;
+  font-size: 22px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Body text */
+.casefile-lede {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  color: #3b3b3b;
+}
+
+/* Button */
+.casefile-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #8b0000;
+  color: white !important;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  transition: 0.2s;
+}
+
+.casefile-button:hover {
+  background: #a30000;
+  transform: translateY(-2px);
+}

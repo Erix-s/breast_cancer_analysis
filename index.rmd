@@ -1,0 +1,37 @@
+---
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    theme: flatly
+    highlight: tango
+    df_print: paged
+    css: style.css
+---
+
+<div class="casefile-wrapper">
+
+  <div class="blood-stamp">CONFIDENTIAL CASE FILE</div>
+
+  <h1 class="casefile-title">THE TUMOR TRIAL</h1>
+  <h2 class="casefile-subtitle">Greed, Deception, Death — Guilty Until Proven Otherwise?</h2>
+
+  <p class="casefile-lede">
+    The suspect: <strong>Breast Cancer</strong>.  
+    The procecutor: <strong>Kevin Guzman, Alexandria Taylor, Eric Xu, Edmund Wong, Jiseung Lee</strong>.
+    Charges: <strong>uncontrolled growth</strong>, <strong>silent invasion</strong>, and <strong>avoidable loss of life</strong>.  
+    We serve as the data-driven prosecution. It is our job they don't get away with it.
+  </p>
+
+  <p class="casefile-lede">
+    Using forensic analytics (biological signals, clinical clues, and survival records we reconstruct the crime scene). 
+    Is the evidence strong enough to convict, or does reasonable doubt remain?
+  </p>
+
+  <a href="#case-file" class="casefile-button">📁 Open Evidence Dossier</a>
+
+</div>
+
+---
