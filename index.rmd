@@ -1,7 +1,7 @@
 ---
 output: 
   html_document:
-    toc: true
+    toc: false
     toc_float:
       collapsed: false
       smooth_scroll: true
@@ -21,7 +21,7 @@ output:
   <p class="casefile-lede">
     The suspect: <strong>Breast Cancer</strong>.  
     The procecutor: <strong>Kevin Guzman, Alexandria Taylor, Eric Xu, Edmund Wong, Jiseung Lee</strong>.
-    Charges: <strong>uncontrolled growth</strong>, <strong>silent invasion</strong>, and <strong>avoidable loss of life</strong>.  
+    Charges: <strong>uncontrolled growth</strong>, <strong>silent invasion</strong>, <strong> and avoidable loss of life</strong>.  
     We serve as the data-driven prosecution. It is our job they don't get away with it.
   </p>
 
