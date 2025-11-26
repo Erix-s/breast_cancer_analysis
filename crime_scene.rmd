@@ -41,7 +41,6 @@ cancer <- read_csv("data/cancer_data.csv") %>%
       #a_stage: Regional =1, Distant =2
       a_stage = factor(a_stage, levels = c("Regional", "Distant"))
     )
-
 # Checking for missing data 
 colSums(is.na(cancer)) #there are no missing data
 
@@ -52,3 +51,17 @@ write_csv(cancer, "data/cancer_clean.csv")
 ### Understanding the Crime Scene
 The crime scene is where the evidence is found. In this case, the crime scene is the biological and clinical data collected from patients diagnosed with breast cancer. This data includes various features such as tumor size, lymph node involvement, hormone receptor status, and patient demographics. These features help us understand the nature of the crime committed by breast cancer and provide insights into its behavior
 
+#### Understanding the ages 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=4}
+# Visualizing the age distribution
+cancer %>%
+  ggplot(aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  labs(title = "Age Distribution of Affected Patients",
+       x = "Age",
+       y = "Count") +
+  theme_minimal()
+```
+
+Our defendant likes to effect people of various ages, but it seems to have a preference for `r quantile(cancer$age, 0.25)` to `r quantile(cancer$age, 0.75)` years old.
