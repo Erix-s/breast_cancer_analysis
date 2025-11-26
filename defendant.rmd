@@ -25,6 +25,11 @@ output:
     by the Prosecution Team.
   </p>
 
+  <img src="photos/breast_cancer.jpg" 
+     alt="Breast Cancer Mugshot" 
+     style="width:300px; border:3px solid black;">
+
+
   <section id="identity">
     <h2>1. Identity of the Defendant</h2>
     <p>
