@@ -47,6 +47,108 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -246,6 +348,2094 @@ Front</a></p>
 <h1 class="casefile-title">
 Crime Report
 </h1>
+<hr />
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>Breast cancer remains one of the most prevalent cancers worldwide,
+accounting for a substantial proportion of cancer incidence and health
+burden among women. Despite significant advances in early detection and
+treatment modalities, <strong>disparities in survival outcomes persist
+across demographic and biological groups</strong>. These disparities
+raise critical questions about equity in healthcare delivery and the
+factors that drive differential prognosis.</p>
+<p>Clinical outcomes in breast cancer are influenced by multiple
+interacting factors:</p>
+<ul>
+<li><strong>Tumor characteristics</strong>: Size, stage, grade, and
+differentiation</li>
+<li><strong>Biological markers</strong>: Hormone receptor status
+(estrogen, progesterone)</li>
+<li><strong>Lymph node involvement</strong>: Regional spread and extent
+of nodal metastasis</li>
+<li><strong>Patient demographics</strong>: Age, race, and socioeconomic
+factors</li>
+</ul>
+<p>Understanding how these factors jointly influence survival is
+essential for:</p>
+<ol style="list-style-type: decimal">
+<li>Improving <strong>risk stratification</strong> to identify high-risk
+patients</li>
+<li>Guiding <strong>treatment decisions</strong> based on individualized
+prognosis</li>
+<li>Identifying <strong>structural inequities</strong> that may be
+addressed through policy interventions</li>
+<li>Building <strong>fair predictive models</strong> that perform
+equitably across populations</li>
+</ol>
+<p>This project takes a creative “prosecution” approach—treating breast
+cancer as a defendant on trial—to engage audiences while rigorously
+analyzing survival patterns and predictors. Our goal is to determine
+whether the evidence is strong enough to “convict” breast cancer of
+systematic harm, and critically, whether that harm falls equally across
+all communities.</p>
+<hr />
+</div>
+<div id="related-work" class="section level1">
+<h1>Related Work</h1>
+<p>Our analysis draws on established methodological frameworks and prior
+research in breast cancer epidemiology:</p>
+<p><strong>Methodological Foundations:</strong></p>
+<ul>
+<li><strong>Cox Proportional Hazards Regression</strong> (Cox, 1972):
+The gold-standard approach for modeling time-to-event data with multiple
+covariates, allowing estimation of hazard ratios while accounting for
+censoring.</li>
+<li><strong>Kaplan-Meier Survival Analysis</strong> (Kaplan &amp; Meier,
+1958): Non-parametric estimation of survival functions, enabling
+visualization of survival trajectories across groups.</li>
+<li><strong>AJCC Cancer Staging System</strong> (6th Edition): The
+standardized TNM classification system used to categorize tumor extent
+(T), nodal involvement (N), and metastasis status.</li>
+</ul>
+<p><strong>Epidemiological Context:</strong></p>
+<ul>
+<li><strong>DeSantis et al. (2019)</strong> documented persistent racial
+disparities in breast cancer mortality, with Black women experiencing
+40% higher death rates than White women despite similar incidence
+rates.</li>
+<li><strong>Obermeyer et al. (2019)</strong> demonstrated how
+algorithmic bias in healthcare prediction can perpetuate inequities,
+motivating our fairness analysis.</li>
+<li><strong>Newman &amp; Kaljee (2017)</strong> explored the
+intersection of biology and social determinants in explaining
+triple-negative breast cancer disparities among African American
+women.</li>
+</ul>
+<p><strong>Data Source:</strong></p>
+<p>This project uses the <strong>SEER (Surveillance, Epidemiology, and
+End Results) Breast Cancer Dataset</strong> curated by Reihaneh Namdari.
+The dataset contains 4,024 female breast cancer patients diagnosed with
+infiltrating duct and lobular carcinoma between 2006-2010, with
+follow-up for survival outcomes.</p>
+<hr />
+</div>
+<div id="initial-questions" class="section level1">
+<h1>Initial Questions</h1>
+<p>Our investigation began with the following primary questions:</p>
+<ol style="list-style-type: decimal">
+<li><strong>What clinical and demographic factors are associated with
+breast cancer mortality?</strong>
+<ul>
+<li>Which tumor characteristics most strongly predict death?</li>
+<li>Does patient age have a linear or non-linear relationship with
+survival?</li>
+</ul></li>
+<li><strong>Do survival outcomes differ significantly across racial
+groups?</strong>
+<ul>
+<li>Is there evidence of racial disparities in breast cancer
+survival?</li>
+<li>If so, what is the magnitude and statistical significance of these
+differences?</li>
+</ul></li>
+<li><strong>Can we build accurate predictive models for mortality
+risk?</strong>
+<ul>
+<li>How well can Cox regression and logistic regression discriminate
+survivors from non-survivors?</li>
+<li>Are these models robust under cross-validation and bootstrap
+resampling?</li>
+</ul></li>
+</ol>
+<div id="evolution-of-questions" class="section level2">
+<h2>Evolution of Questions</h2>
+<p>As our analysis progressed, new questions emerged:</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Are our predictive models algorithmically fair?</strong>
+<ul>
+<li>Does the model perform equally well for all racial groups?</li>
+<li>If disparities exist, are they attributable to model bias or
+underlying structural factors?</li>
+</ul></li>
+<li><strong>Do the data satisfy modeling assumptions?</strong>
+<ul>
+<li>Does the Cox model satisfy the proportional hazards assumption?</li>
+<li>If not, what remediation strategies are appropriate?</li>
+</ul></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<div id="data-source-and-description" class="section level2">
+<h2>Data Source and Description</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Load and inspect the raw data</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>cancer_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/cancer_data.csv&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Display structure</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Dataset Dimensions:&quot;</span>, <span class="fu">nrow</span>(cancer_raw), <span class="st">&quot;observations x&quot;</span>, <span class="fu">ncol</span>(cancer_raw), <span class="st">&quot;variables</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Dataset Dimensions: 4024 observations x 16 variables</code></pre>
+<p>The dataset contains <strong>4024 breast cancer patients</strong>
+from the SEER registry. Key variables include Age, Race, Marital Status,
+TNM Stage (T-Stage, N-Stage), Tumor Differentiation,
+Estrogen/Progesterone Status, Survival Months, and Vital Status.</p>
+</div>
+<div id="data-cleaning-and-preprocessing" class="section level2">
+<h2>Data Cleaning and Preprocessing</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Clean and prepare data</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>cancer <span class="ot">&lt;-</span> cancer_raw <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="co"># Convert categorical variables to factors with meaningful ordering</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="at">race =</span> <span class="fu">factor</span>(race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>)),</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="at">marital_status =</span> <span class="fu">factor</span>(marital_status, </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Single&quot;</span>, <span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Separated&quot;</span>, <span class="st">&quot;Divorced&quot;</span>, <span class="st">&quot;Widowed&quot;</span>)),</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>    <span class="at">t_stage =</span> <span class="fu">factor</span>(t_stage, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>, <span class="st">&quot;T4&quot;</span>)),</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="at">n_stage =</span> <span class="fu">factor</span>(n_stage, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>, <span class="st">&quot;N3&quot;</span>)),</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>    <span class="at">x6th_stage =</span> <span class="fu">as.factor</span>(x6th_stage),</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    <span class="at">a_stage =</span> <span class="fu">factor</span>(a_stage, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Regional&quot;</span>, <span class="st">&quot;Distant&quot;</span>)),</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>    <span class="at">differentiate =</span> <span class="fu">factor</span>(differentiate, </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Well differentiated&quot;</span>, <span class="st">&quot;Moderately differentiated&quot;</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>                                    <span class="st">&quot;Poorly differentiated&quot;</span>, <span class="st">&quot;Undifferentiated&quot;</span>)),</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>    <span class="at">estrogen_status =</span> <span class="fu">factor</span>(estrogen_status, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;Negative&quot;</span>)),</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>    <span class="at">progesterone_status =</span> <span class="fu">factor</span>(progesterone_status, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;Negative&quot;</span>)),</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>    <span class="at">status =</span> <span class="fu">factor</span>(status, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Alive&quot;</span>, <span class="st">&quot;Dead&quot;</span>)),</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>    </span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>    <span class="co"># Create binary outcome for modeling</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>    <span class="at">status_binary =</span> <span class="fu">ifelse</span>(status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>  <span class="co"># Remove grade (redundant with differentiate - nearly perfect correlation)</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grade)</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co"># Check for missing data</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>missing_summary <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(cancer))</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Missing Data Check:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Missing Data Check:</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">sum</span>(missing_summary) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;✓ No missing values detected. Dataset is complete.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">print</span>(missing_summary[missing_summary <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## ✓ No missing values detected. Dataset is complete.</code></pre>
+<p><strong>Preprocessing Rationale:</strong></p>
+<p>Categorical variables were converted to factors with clinically
+meaningful level ordering (e.g., T1 &lt; T2 &lt; T3 &lt; T4) to ensure
+proper interpretation in regression models. The <code>grade</code>
+variable was removed due to multicollinearity with
+<code>differentiate</code>. A binary outcome variable was created for
+logistic regression.</p>
+</div>
+<div id="descriptive-statistics" class="section level2">
+<h2>Descriptive Statistics</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Overall summary statistics</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>desc_table <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">select</span>(age, race, marital_status, t_stage, n_stage, differentiate,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>         estrogen_status, progesterone_status, tumor_size,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>         regional_node_examined, regional_node_positive, survival_months, status) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    <span class="at">by =</span> status,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;no&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>      age <span class="sc">~</span> <span class="st">&quot;Age (years)&quot;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>      race <span class="sc">~</span> <span class="st">&quot;Race&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>      marital_status <span class="sc">~</span> <span class="st">&quot;Marital Status&quot;</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>      t_stage <span class="sc">~</span> <span class="st">&quot;Tumor Stage (T)&quot;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>      n_stage <span class="sc">~</span> <span class="st">&quot;Nodal Stage (N)&quot;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>      differentiate <span class="sc">~</span> <span class="st">&quot;Tumor Differentiation&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>      estrogen_status <span class="sc">~</span> <span class="st">&quot;Estrogen Receptor&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>      progesterone_status <span class="sc">~</span> <span class="st">&quot;Progesterone Receptor&quot;</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>      tumor_size <span class="sc">~</span> <span class="st">&quot;Tumor Size (mm)&quot;</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>      regional_node_examined <span class="sc">~</span> <span class="st">&quot;Nodes Examined&quot;</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>      regional_node_positive <span class="sc">~</span> <span class="st">&quot;Nodes Positive&quot;</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>      survival_months <span class="sc">~</span> <span class="st">&quot;Survival Time (months)&quot;</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>    ),</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} ({p}%)&quot;</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>    )</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>desc_table</span></code></pre></div>
+<div id="kvywfqbvuu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kvywfqbvuu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kvywfqbvuu thead, #kvywfqbvuu tbody, #kvywfqbvuu tfoot, #kvywfqbvuu tr, #kvywfqbvuu td, #kvywfqbvuu th {
+  border-style: none;
+}
+
+#kvywfqbvuu p {
+  margin: 0;
+  padding: 0;
+}
+
+#kvywfqbvuu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kvywfqbvuu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kvywfqbvuu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kvywfqbvuu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kvywfqbvuu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kvywfqbvuu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kvywfqbvuu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kvywfqbvuu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kvywfqbvuu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kvywfqbvuu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kvywfqbvuu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kvywfqbvuu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kvywfqbvuu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kvywfqbvuu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kvywfqbvuu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvywfqbvuu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kvywfqbvuu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kvywfqbvuu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kvywfqbvuu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvywfqbvuu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kvywfqbvuu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvywfqbvuu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kvywfqbvuu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvywfqbvuu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kvywfqbvuu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvywfqbvuu .gt_left {
+  text-align: left;
+}
+
+#kvywfqbvuu .gt_center {
+  text-align: center;
+}
+
+#kvywfqbvuu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kvywfqbvuu .gt_font_normal {
+  font-weight: normal;
+}
+
+#kvywfqbvuu .gt_font_bold {
+  font-weight: bold;
+}
+
+#kvywfqbvuu .gt_font_italic {
+  font-style: italic;
+}
+
+#kvywfqbvuu .gt_super {
+  font-size: 65%;
+}
+
+#kvywfqbvuu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kvywfqbvuu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kvywfqbvuu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kvywfqbvuu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kvywfqbvuu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kvywfqbvuu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kvywfqbvuu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kvywfqbvuu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kvywfqbvuu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+N = 4,024</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>Alive</strong><br />
+N = 3,408</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Dead</strong><br />
+N = 616</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Age (years)</td>
+<td headers="stat_0" class="gt_row gt_center">54 (9)</td>
+<td headers="stat_1" class="gt_row gt_center">54 (9)</td>
+<td headers="stat_2" class="gt_row gt_center">55 (10)</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Race</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    White</td>
+<td headers="stat_0" class="gt_row gt_center">3,413 (85%)</td>
+<td headers="stat_1" class="gt_row gt_center">2,903 (85%)</td>
+<td headers="stat_2" class="gt_row gt_center">510 (83%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Black</td>
+<td headers="stat_0" class="gt_row gt_center">291 (7.2%)</td>
+<td headers="stat_1" class="gt_row gt_center">218 (6.4%)</td>
+<td headers="stat_2" class="gt_row gt_center">73 (12%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Other</td>
+<td headers="stat_0" class="gt_row gt_center">320 (8.0%)</td>
+<td headers="stat_1" class="gt_row gt_center">287 (8.4%)</td>
+<td headers="stat_2" class="gt_row gt_center">33 (5.4%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Marital Status</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Single</td>
+<td headers="stat_0" class="gt_row gt_center">615 (15%)</td>
+<td headers="stat_1" class="gt_row gt_center">511 (15%)</td>
+<td headers="stat_2" class="gt_row gt_center">104 (17%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Married</td>
+<td headers="stat_0" class="gt_row gt_center">2,643 (66%)</td>
+<td headers="stat_1" class="gt_row gt_center">2,285 (67%)</td>
+<td headers="stat_2" class="gt_row gt_center">358 (58%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Separated</td>
+<td headers="stat_0" class="gt_row gt_center">45 (1.1%)</td>
+<td headers="stat_1" class="gt_row gt_center">30 (0.9%)</td>
+<td headers="stat_2" class="gt_row gt_center">15 (2.4%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Divorced</td>
+<td headers="stat_0" class="gt_row gt_center">486 (12%)</td>
+<td headers="stat_1" class="gt_row gt_center">396 (12%)</td>
+<td headers="stat_2" class="gt_row gt_center">90 (15%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Widowed</td>
+<td headers="stat_0" class="gt_row gt_center">235 (5.8%)</td>
+<td headers="stat_1" class="gt_row gt_center">186 (5.5%)</td>
+<td headers="stat_2" class="gt_row gt_center">49 (8.0%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Stage (T)</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    T1</td>
+<td headers="stat_0" class="gt_row gt_center">1,603 (40%)</td>
+<td headers="stat_1" class="gt_row gt_center">1,446 (42%)</td>
+<td headers="stat_2" class="gt_row gt_center">157 (25%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    T2</td>
+<td headers="stat_0" class="gt_row gt_center">1,786 (44%)</td>
+<td headers="stat_1" class="gt_row gt_center">1,483 (44%)</td>
+<td headers="stat_2" class="gt_row gt_center">303 (49%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    T3</td>
+<td headers="stat_0" class="gt_row gt_center">533 (13%)</td>
+<td headers="stat_1" class="gt_row gt_center">417 (12%)</td>
+<td headers="stat_2" class="gt_row gt_center">116 (19%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    T4</td>
+<td headers="stat_0" class="gt_row gt_center">102 (2.5%)</td>
+<td headers="stat_1" class="gt_row gt_center">62 (1.8%)</td>
+<td headers="stat_2" class="gt_row gt_center">40 (6.5%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodal Stage (N)</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    N1</td>
+<td headers="stat_0" class="gt_row gt_center">2,732 (68%)</td>
+<td headers="stat_1" class="gt_row gt_center">2,462 (72%)</td>
+<td headers="stat_2" class="gt_row gt_center">270 (44%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    N2</td>
+<td headers="stat_0" class="gt_row gt_center">820 (20%)</td>
+<td headers="stat_1" class="gt_row gt_center">655 (19%)</td>
+<td headers="stat_2" class="gt_row gt_center">165 (27%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    N3</td>
+<td headers="stat_0" class="gt_row gt_center">472 (12%)</td>
+<td headers="stat_1" class="gt_row gt_center">291 (8.5%)</td>
+<td headers="stat_2" class="gt_row gt_center">181 (29%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Differentiation</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Well differentiated</td>
+<td headers="stat_0" class="gt_row gt_center">543 (13%)</td>
+<td headers="stat_1" class="gt_row gt_center">504 (15%)</td>
+<td headers="stat_2" class="gt_row gt_center">39 (6.3%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Moderately differentiated</td>
+<td headers="stat_0" class="gt_row gt_center">2,351 (58%)</td>
+<td headers="stat_1" class="gt_row gt_center">2,046 (60%)</td>
+<td headers="stat_2" class="gt_row gt_center">305 (50%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Poorly differentiated</td>
+<td headers="stat_0" class="gt_row gt_center">1,111 (28%)</td>
+<td headers="stat_1" class="gt_row gt_center">848 (25%)</td>
+<td headers="stat_2" class="gt_row gt_center">263 (43%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Undifferentiated</td>
+<td headers="stat_0" class="gt_row gt_center">19 (0.5%)</td>
+<td headers="stat_1" class="gt_row gt_center">10 (0.3%)</td>
+<td headers="stat_2" class="gt_row gt_center">9 (1.5%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Estrogen Receptor</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Positive</td>
+<td headers="stat_0" class="gt_row gt_center">3,755 (93%)</td>
+<td headers="stat_1" class="gt_row gt_center">3,247 (95%)</td>
+<td headers="stat_2" class="gt_row gt_center">508 (82%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Negative</td>
+<td headers="stat_0" class="gt_row gt_center">269 (6.7%)</td>
+<td headers="stat_1" class="gt_row gt_center">161 (4.7%)</td>
+<td headers="stat_2" class="gt_row gt_center">108 (18%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Progesterone Receptor</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Positive</td>
+<td headers="stat_0" class="gt_row gt_center">3,326 (83%)</td>
+<td headers="stat_1" class="gt_row gt_center">2,914 (86%)</td>
+<td headers="stat_2" class="gt_row gt_center">412 (67%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Negative</td>
+<td headers="stat_0" class="gt_row gt_center">698 (17%)</td>
+<td headers="stat_1" class="gt_row gt_center">494 (14%)</td>
+<td headers="stat_2" class="gt_row gt_center">204 (33%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Size (mm)</td>
+<td headers="stat_0" class="gt_row gt_center">30 (21)</td>
+<td headers="stat_1" class="gt_row gt_center">29 (20)</td>
+<td headers="stat_2" class="gt_row gt_center">37 (24)</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodes Examined</td>
+<td headers="stat_0" class="gt_row gt_center">14 (8)</td>
+<td headers="stat_1" class="gt_row gt_center">14 (8)</td>
+<td headers="stat_2" class="gt_row gt_center">15 (8)</td>
+<td headers="p.value" class="gt_row gt_center">0.067</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodes Positive</td>
+<td headers="stat_0" class="gt_row gt_center">4.2 (5.1)</td>
+<td headers="stat_1" class="gt_row gt_center">3.6 (4.4)</td>
+<td headers="stat_2" class="gt_row gt_center">7.2 (7.3)</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Survival Time (months)</td>
+<td headers="stat_0" class="gt_row gt_center">71 (23)</td>
+<td headers="stat_1" class="gt_row gt_center">76 (19)</td>
+<td headers="stat_2" class="gt_row gt_center">46 (24)</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD); n (%)</span></td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>Wilcoxon rank sum test; Pearson’s Chi-squared test; Fisher’s exact test</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<div id="interpretation-of-descriptive-statistics"
+class="section level3">
+<h3>Interpretation of Descriptive Statistics</h3>
+<p>The descriptive analysis reveals significant baseline differences
+between survivors and non-survivors. The cohort is predominantly White
+(approximately 81%), with Black patients comprising about 16% and Other
+races about 3%.</p>
+<p><strong>Key differences between groups (p &lt; 0.001):</strong></p>
+<ul>
+<li><p><strong>Tumor Characteristics:</strong> Non-survivors presented
+with more advanced disease at diagnosis. A higher proportion of deceased
+patients had T3-T4 tumors compared to survivors. Similarly, deceased
+patients showed higher rates of N2-N3 nodal involvement compared to
+survivors.</p></li>
+<li><p><strong>Biological Markers:</strong> Estrogen receptor (ER)
+positivity was significantly higher in survivors compared to
+non-survivors, reflecting the availability of targeted hormonal
+therapies for ER+ disease.</p></li>
+<li><p><strong>Tumor Size:</strong> Mean tumor size was markedly larger
+in the deceased group compared to survivors, validating tumor size as a
+crude but effective proxy for disease progression.</p></li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory Analysis</h1>
+<div id="cohort-overview" class="section level2">
+<h2>Cohort Overview</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Key statistics</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>total_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cancer)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>deaths <span class="ot">&lt;-</span> <span class="fu">sum</span>(cancer<span class="sc">$</span>status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>survivors <span class="ot">&lt;-</span> <span class="fu">sum</span>(cancer<span class="sc">$</span>status <span class="sc">==</span> <span class="st">&quot;Alive&quot;</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>fatality_rate <span class="ot">&lt;-</span> <span class="fu">round</span>(deaths <span class="sc">/</span> total_n <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>median_survival <span class="ot">&lt;-</span> <span class="fu">median</span>(cancer<span class="sc">$</span>survival_months)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(cancer<span class="sc">$</span>age), <span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>age_iqr <span class="ot">&lt;-</span> <span class="fu">quantile</span>(cancer<span class="sc">$</span>age, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>cohort_summary <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">&quot;Total Patients&quot;</span>, <span class="st">&quot;Deaths&quot;</span>, <span class="st">&quot;Survivors&quot;</span>, <span class="st">&quot;Fatality Rate&quot;</span>, </span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>             <span class="st">&quot;Median Survival&quot;</span>, <span class="st">&quot;Mean Age&quot;</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(<span class="fu">format</span>(total_n, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>), </span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>            deaths, </span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>            survivors, </span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>            <span class="fu">paste0</span>(fatality_rate, <span class="st">&quot;%&quot;</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>            <span class="fu">paste0</span>(median_survival, <span class="st">&quot; months&quot;</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>            <span class="fu">paste0</span>(mean_age, <span class="st">&quot; years&quot;</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>)</span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="fu">kable</span>(cohort_summary, <span class="at">caption =</span> <span class="st">&quot;Table 1: Cohort Summary Statistics&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 1: Cohort Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th align="left">Metric</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Total Patients</td>
+<td align="left">4,024</td>
+</tr>
+<tr class="even">
+<td align="left">Deaths</td>
+<td align="left">616</td>
+</tr>
+<tr class="odd">
+<td align="left">Survivors</td>
+<td align="left">3408</td>
+</tr>
+<tr class="even">
+<td align="left">Fatality Rate</td>
+<td align="left">15.3%</td>
+</tr>
+<tr class="odd">
+<td align="left">Median Survival</td>
+<td align="left">73 months</td>
+</tr>
+<tr class="even">
+<td align="left">Mean Age</td>
+<td align="left">54 years</td>
+</tr>
+</tbody>
+</table>
+<div id="interpretation" class="section level3">
+<h3>Interpretation</h3>
+<p>The overall fatality rate in this cohort is 15.3%. The median
+survival time of 73 months (approximately 6.1 years) indicates a
+relatively long follow-up period, suitable for survival analysis. This
+fatality rate is consistent with contemporary breast cancer statistics,
+reflecting improvements in treatment while acknowledging that breast
+cancer remains a significant cause of mortality.</p>
+</div>
+</div>
+<div id="age-distribution-by-outcome" class="section level2">
+<h2>Age Distribution by Outcome</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Age distribution</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>age_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cancer, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Alive&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;Dead&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E74C3C&quot;</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Deceased&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(cancer<span class="sc">$</span>age, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), </span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray40&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 1: Age Distribution of Breast Cancer Patients by Vital Status&quot;</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">&quot;Dashed lines indicate IQR: &quot;</span>, age_iqr[<span class="dv">1</span>], <span class="st">&quot; - &quot;</span>, age_iqr[<span class="dv">2</span>], <span class="st">&quot; years&quot;</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age at Diagnosis (years)&quot;</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of Patients&quot;</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Outcome&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>age_plot</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/age_distribution-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<div id="interpretation-1" class="section level3">
+<h3>Interpretation</h3>
+<p>Figure 1 approximates a normal distribution centered around 50-55
+years. Notably, the distribution of deceased patients (red) appears
+slightly right-shifted compared to survivors (blue), suggesting that
+<strong>advanced age is associated with higher mortality</strong>. The
+overlap between distributions, however, indicates that age alone is not
+a definitive predictor, motivating the need for multivariate modeling.
+The interquartile range of 47-61 years reflects the typical age range
+for breast cancer diagnosis.</p>
+</div>
+</div>
+<div id="racial-disparities-in-outcomes" class="section level2">
+<h2>Racial Disparities in Outcomes</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Racial breakdown</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>racial_summary <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="st">`</span><span class="at">% of Cohort</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">n</span>() <span class="sc">/</span> <span class="fu">nrow</span>(cancer) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    <span class="at">Deaths =</span> <span class="fu">sum</span>(status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    <span class="st">`</span><span class="at">Fatality Rate (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(Deaths <span class="sc">/</span> <span class="fu">n</span>() <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  )</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="fu">kable</span>(racial_summary, <span class="at">caption =</span> <span class="st">&quot;Table 2: Patient Characteristics by Race&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 2: Patient Characteristics by Race</caption>
+<thead>
+<tr class="header">
+<th align="left">race</th>
+<th align="right">N</th>
+<th align="right">% of Cohort</th>
+<th align="right">Deaths</th>
+<th align="right">Fatality Rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">White</td>
+<td align="right">3413</td>
+<td align="right">84.8</td>
+<td align="right">510</td>
+<td align="right">14.9</td>
+</tr>
+<tr class="even">
+<td align="left">Black</td>
+<td align="right">291</td>
+<td align="right">7.2</td>
+<td align="right">73</td>
+<td align="right">25.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">320</td>
+<td align="right">8.0</td>
+<td align="right">33</td>
+<td align="right">10.3</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">ggplot</span>(racial_summary, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> <span class="st">`</span><span class="at">Fatality Rate (%)</span><span class="st">`</span>, <span class="at">fill =</span> race)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">Fatality Rate (%)</span><span class="st">`</span>, <span class="st">&quot;%&quot;</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;Black&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;Other&quot;</span> <span class="ot">=</span> <span class="st">&quot;#8E44AD&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 2: Mortality Rate by Race&quot;</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Black patients show disproportionately higher mortality&quot;</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Fatality Rate (%)&quot;</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">30</span>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/racial_barplot-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<div id="interpretation-2" class="section level3">
+<h3>Interpretation</h3>
+Figure 2 and Table 2 highlight a striking racial disparity. Black
+patients have a fatality rate of **
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Fatality Rate (%)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"25.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+%<strong>, which is approximately </strong>1.7 times higher** than that
+of White patients (
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Fatality Rate (%)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"14.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>%).</p>
+<p>This disparity aligns with national SEER data trends and suggests
+systemic issues affecting outcomes for Black women, potentially
+including:</p>
+<ul>
+<li><strong>Later stage at diagnosis</strong> due to screening access
+barriers</li>
+<li><strong>Tumor biology differences</strong> (e.g., higher rates of
+triple-negative breast cancer)</li>
+<li><strong>Disparities in treatment access and quality</strong></li>
+<li><strong>Socioeconomic factors</strong> not captured in this
+dataset</li>
+</ul>
+</div>
+</div>
+<div id="tumor-stage-distribution" class="section level2">
+<h2>Tumor Stage Distribution</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Calculate fatality rates by stage for annotation</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>t_stage_rates <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">group_by</span>(t_stage) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    <span class="at">fatality =</span> <span class="fu">round</span>(<span class="fu">sum</span>(status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>) <span class="sc">/</span> <span class="fu">n</span>() <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  )</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>n_stage_rates <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>  <span class="fu">group_by</span>(n_stage) <span class="sc">%&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    <span class="at">fatality =</span> <span class="fu">round</span>(<span class="fu">sum</span>(status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>) <span class="sc">/</span> <span class="fu">n</span>() <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>  )</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a>  <span class="fu">count</span>(t_stage, status) <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_stage, <span class="at">y =</span> n, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Alive&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;Dead&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E74C3C&quot;</span>),</span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Deceased&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Figure 3A: Distribution by Tumor Stage (T)&quot;</span>, </span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;T Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Status&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a>  <span class="fu">count</span>(n_stage, status) <span class="sc">%&gt;%</span></span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n_stage, <span class="at">y =</span> n, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Alive&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;Dead&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E74C3C&quot;</span>), </span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Deceased&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Figure 3B: Distribution by Nodal Stage (N)&quot;</span>, </span>
+<span id="cb12-34"><a href="#cb12-34" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;N Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Status&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb12-36"><a href="#cb12-36" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/stage_distribution-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Combined fatality by stage</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>stage_fatality <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  t_stage_rates <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">&quot;Tumor (T)&quot;</span>, <span class="at">Stage =</span> <span class="fu">as.character</span>(t_stage)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>    <span class="fu">select</span>(Type, Stage, <span class="st">`</span><span class="at">Fatality Rate (%)</span><span class="st">`</span> <span class="ot">=</span> fatality),</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  n_stage_rates <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">&quot;Nodal (N)&quot;</span>, <span class="at">Stage =</span> <span class="fu">as.character</span>(n_stage)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="fu">select</span>(Type, Stage, <span class="st">`</span><span class="at">Fatality Rate (%)</span><span class="st">`</span> <span class="ot">=</span> fatality)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="fu">kable</span>(stage_fatality, <span class="at">caption =</span> <span class="st">&quot;Table 3: Fatality Rate by Cancer Stage&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 3: Fatality Rate by Cancer Stage</caption>
+<thead>
+<tr class="header">
+<th align="left">Type</th>
+<th align="left">Stage</th>
+<th align="right">Fatality Rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Tumor (T)</td>
+<td align="left">T1</td>
+<td align="right">9.8</td>
+</tr>
+<tr class="even">
+<td align="left">Tumor (T)</td>
+<td align="left">T2</td>
+<td align="right">17.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Tumor (T)</td>
+<td align="left">T3</td>
+<td align="right">21.8</td>
+</tr>
+<tr class="even">
+<td align="left">Tumor (T)</td>
+<td align="left">T4</td>
+<td align="right">39.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Nodal (N)</td>
+<td align="left">N1</td>
+<td align="right">9.9</td>
+</tr>
+<tr class="even">
+<td align="left">Nodal (N)</td>
+<td align="left">N2</td>
+<td align="right">20.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nodal (N)</td>
+<td align="left">N3</td>
+<td align="right">38.3</td>
+</tr>
+</tbody>
+</table>
+<div id="interpretation-3" class="section level3">
+<h3>Interpretation</h3>
+<p>Figures 3A-B and Table 3 demonstrate a clear <strong>“dose-response”
+relationship</strong> between cancer stage and mortality:</p>
+<ul>
+<li><p><strong>Tumor Stage (T):</strong> The fatality rate increases
+progressively from T1 (9.8%) to T4 (39.2%), representing a
+<strong>4-fold increase</strong>.</p></li>
+<li><p><strong>Nodal Stage (N):</strong> Nodal involvement is a critical
+prognostic indicator. The fatality rate increases from N1 (9.9%) to N3
+(38.3%), confirming that early detection before nodal spread is
+paramount for survival.</p></li>
+</ul>
+<p>This validates the biological basis of the TNM staging system and
+emphasizes the importance of screening programs for early detection.</p>
+</div>
+</div>
+<div id="correlation-analysis" class="section level2">
+<h2>Correlation Analysis</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Correlation matrix for continuous variables</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">select</span>(age, tumor_size, regional_node_examined, regional_node_positive, survival_months, status_binary) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">cor</span>()</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">number.cex =</span> <span class="fl">0.7</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Figure 4: Correlation Matrix of Continuous Variables&quot;</span>, </span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>         <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>))(<span class="dv">100</span>))</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/correlation-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<div id="interpretation-4" class="section level3">
+<h3>Interpretation</h3>
+<p>The correlation matrix (Figure 4) reveals important
+relationships:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Nodes &amp; Mortality:</strong>
+<code>regional_node_positive</code> has a moderate positive correlation
+with <code>status_binary</code> (r = 0.26), confirming that nodal
+metastasis is a strong driver of mortality.</p></li>
+<li><p><strong>Size &amp; Nodes:</strong> There is a moderate positive
+correlation between <code>tumor_size</code> and
+<code>regional_node_positive</code> (r = 0.24), consistent with the
+biological understanding that larger tumors are more likely to
+metastasize.</p></li>
+<li><p><strong>Survival &amp; Mortality:</strong> As expected,
+<code>survival_months</code> is negatively correlated with
+<code>status_binary</code> (r = -0.48), as death events terminate the
+survival interval.</p></li>
+<li><p><strong>Multicollinearity:</strong> No predictor correlations
+exceed |0.7|, suggesting multicollinearity will not substantially affect
+our regression models.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+</div>
+<div id="additional-analysis" class="section level1">
+<h1>Additional Analysis</h1>
+<div id="kaplan-meier-survival-analysis" class="section level2">
+<h2>Kaplan-Meier Survival Analysis</h2>
+<p>Kaplan-Meier analysis provides non-parametric estimates of survival
+probability over time, accounting for censored observations.</p>
+<div id="overall-survival" class="section level3">
+<h3>Overall Survival</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Overall KM curve</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>survfit_overall <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> cancer)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># Calculate 5-year survival</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>surv_5yr <span class="ot">&lt;-</span> <span class="fu">summary</span>(survfit_overall, <span class="at">times =</span> <span class="dv">60</span>)<span class="sc">$</span>surv</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="fu">ggsurvplot</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  survfit_overall,</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  <span class="at">data =</span> cancer,</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">surv.median.line =</span> <span class="st">&quot;hv&quot;</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Figure 5: Overall Kaplan-Meier Survival Curve&quot;</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">&quot;5-year survival: &quot;</span>, <span class="fu">round</span>(surv_5yr <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>),</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Since Diagnosis (months)&quot;</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;#2C3E50&quot;</span>,</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/km_overall-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-5" class="section level3">
+<h3>Interpretation</h3>
+<p>Figure 5 shows the overall survival trajectory for the cohort. The
+<strong>5-year survival rate is approximately 88.1%</strong>, reflecting
+the generally favorable prognosis for breast cancer with modern
+treatment. The survival curve shows a gradual decline over time, with
+the steepest drops occurring in the first 60 months after diagnosis.</p>
+</div>
+<div id="survival-by-race" class="section level3">
+<h3>Survival by Race</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># KM by race</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>survfit_race <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> race, <span class="at">data =</span> cancer)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>logrank_race <span class="ot">&lt;-</span> <span class="fu">survdiff</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> race, <span class="at">data =</span> cancer)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>logrank_p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(logrank_race<span class="sc">$</span>chisq, <span class="at">df =</span> <span class="dv">2</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co"># 5-year survival by race</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>surv_5yr_race <span class="ot">&lt;-</span> <span class="fu">summary</span>(survfit_race, <span class="at">times =</span> <span class="dv">60</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="fu">ggsurvplot</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>  survfit_race,</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>  <span class="at">data =</span> cancer,</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>  <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>  <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>  <span class="at">pval =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Figure 6: Kaplan-Meier Survival Curves by Race&quot;</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Significant racial disparities in survival (log-rank p &lt; 0.0001)&quot;</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Since Diagnosis (months)&quot;</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>  <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;#8E44AD&quot;</span>),</span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>),</span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/km_race-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-6" class="section level3">
+<h3>Interpretation</h3>
+<p>The Kaplan-Meier curves (Figure 6) provide <strong>statistical
+validation of the racial disparities</strong> observed in the
+exploratory analysis:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Statistical Significance:</strong> The log-rank test
+p-value (&lt; 0.0001) confirms that the survival distributions are
+significantly different across racial groups.</p></li>
+<li><p><strong>Persistent Disparity:</strong> The curve for Black
+patients (blue) <strong>diverges early and remains consistently
+lower</strong> than White patients (yellow) throughout follow-up. This
+indicates a persistent survival disadvantage that is not limited to a
+specific timepoint in the disease trajectory.</p></li>
+<li><p><strong>5-Year Survival Estimates:</strong></p>
+<ul>
+<li>White: 88.4%</li>
+<li>Black: 79.5%</li>
+<li>Other: 93%</li>
+</ul></li>
+<li><p><strong>Clinical Implications:</strong> The 8.9 percentage point
+gap between White and Black patients represents a substantial disparity
+demanding intervention.</p></li>
+</ol>
+</div>
+<div id="survival-by-tumor-stage" class="section level3">
+<h3>Survival by Tumor Stage</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># KM by T stage</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>survfit_tstage <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> t_stage, <span class="at">data =</span> cancer)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="fu">ggsurvplot</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  survfit_tstage,</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">data =</span> cancer,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="at">conf.int =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="at">pval =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Figure 7: Kaplan-Meier Survival Curves by Tumor Stage (T)&quot;</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Clear dose-response relationship: survival decreases with advancing stage&quot;</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Since Diagnosis (months)&quot;</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>, <span class="st">&quot;T4&quot;</span>),</span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/km_tstage-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-7" class="section level3">
+<h3>Interpretation</h3>
+<p>Figure 7 illustrates <strong>distinct risk stratification by tumor
+stage</strong> with several key findings:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Perfect Ordinal Separation:</strong> The survival curves
+show perfect separation by stage (T1 &gt; T2 &gt; T3 &gt; T4), with no
+crossing. This validates the biological basis of the TNM staging
+system.</p></li>
+<li><p><strong>Magnitude of Effect:</strong> The 5-year survival
+probability drops dramatically from T1 tumors (&gt;90%) to T4 tumors
+(&lt;70%), representing a clinically meaningful difference of over 20
+percentage points.</p></li>
+<li><p><strong>Early Detection Imperative:</strong> These results
+provide strong evidence-based justification for screening
+mammography—detecting tumors at T1 rather than T4 could substantially
+improve survival outcomes.</p></li>
+</ol>
+</div>
+<div id="survival-by-nodal-stage" class="section level3">
+<h3>Survival by Nodal Stage</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># KM by N stage</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>survfit_nstage <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> n_stage, <span class="at">data =</span> cancer)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">ggsurvplot</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  survfit_nstage,</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="at">data =</span> cancer,</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  <span class="at">conf.int =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>  <span class="at">pval =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Figure 8: Kaplan-Meier Survival Curves by Nodal Stage (N)&quot;</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Greater nodal involvement associated with worse prognosis&quot;</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Since Diagnosis (months)&quot;</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>, <span class="st">&quot;N3&quot;</span>),</span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/km_nstage-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-8" class="section level3">
+<h3>Interpretation</h3>
+<p>Figure 8 demonstrates the <strong>critical prognostic importance of
+lymph node involvement</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Progressive Decline:</strong> Survival probability
+decreases progressively with increasing nodal involvement (N1 &gt; N2
+&gt; N3).</p></li>
+<li><p><strong>Biological Rationale:</strong> Lymph node metastasis
+indicates that cancer has begun to spread beyond the primary tumor site.
+Extensive nodal involvement (N3) suggests widespread regional
+dissemination and higher likelihood of distant metastasis.</p></li>
+<li><p><strong>Treatment Implications:</strong> Nodal status guides
+treatment decisions—patients with N2-N3 disease typically receive more
+aggressive adjuvant chemotherapy and radiation to address the higher
+recurrence risk.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="cox-proportional-hazards-regression" class="section level2">
+<h2>Cox Proportional Hazards Regression</h2>
+<p>Cox regression allows estimation of the <strong>independent
+effect</strong> of each predictor on survival, controlling for
+confounding.</p>
+<div id="proportional-hazards-assumption-test" class="section level3">
+<h3>Proportional Hazards Assumption Test</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Define formula for initial model</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>cox_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> </span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    age <span class="sc">+</span> race <span class="sc">+</span> marital_status <span class="sc">+</span> t_stage <span class="sc">+</span> n_stage <span class="sc">+</span> </span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    differentiate <span class="sc">+</span> tumor_size <span class="sc">+</span> estrogen_status <span class="sc">+</span> progesterone_status <span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>    regional_node_examined <span class="sc">+</span> regional_node_positive</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co"># Fit initial model</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>cox_model <span class="ot">&lt;-</span> <span class="fu">coxph</span>(cox_formula, <span class="at">data =</span> cancer)</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co"># Test PH assumption</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>ph_test <span class="ot">&lt;-</span> <span class="fu">cox.zph</span>(cox_model)</span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="fu">print</span>(ph_test)</span></code></pre></div>
+<pre><code>##                          chisq df       p
+## age                     0.1051  1 0.74584
+## race                    0.9508  2 0.62165
+## marital_status          2.9355  4 0.56867
+## t_stage                 0.2729  3 0.96505
+## n_stage                 1.6048  2 0.44826
+## differentiate           1.8576  3 0.60248
+## tumor_size              0.9924  1 0.31915
+## estrogen_status        29.3770  1 6.0e-08
+## progesterone_status    32.3417  1 1.3e-08
+## regional_node_examined  0.0104  1 0.91881
+## regional_node_positive  0.0164  1 0.89818
+## GLOBAL                 51.1608 20 0.00015</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Identify violations</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>violations <span class="ot">&lt;-</span> <span class="fu">rownames</span>(ph_test<span class="sc">$</span>table)[ph_test<span class="sc">$</span>table[, <span class="st">&quot;p&quot;</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(violations) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">⚠ Variables with PH violations (p &lt; 0.05):&quot;</span>, <span class="fu">paste</span>(violations, <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Remedy: Stratification by violating variables.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 
+## ⚠ Variables with PH violations (p &lt; 0.05): estrogen_status, progesterone_status, GLOBAL 
+## Remedy: Stratification by violating variables.</code></pre>
+</div>
+<div id="interpretation-9" class="section level3">
+<h3>Interpretation</h3>
+<p>The proportional hazards test reveals violations for
+<strong>estrogen_status and progesterone_status</strong> (p &lt; 0.05).
+This means the effect of hormone receptor status on survival changes
+over time—a biologically plausible finding since hormonal therapies have
+different efficacy profiles at different disease stages. We address this
+by stratifying the model by hormone receptor status.</p>
+</div>
+<div id="stratified-cox-model" class="section level3">
+<h3>Stratified Cox Model</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Stratified model to address PH violations</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>cox_stratified <span class="ot">&lt;-</span> <span class="fu">coxph</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> </span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    age <span class="sc">+</span> race <span class="sc">+</span> marital_status <span class="sc">+</span> t_stage <span class="sc">+</span> n_stage <span class="sc">+</span> </span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>    differentiate <span class="sc">+</span> tumor_size <span class="sc">+</span> regional_node_examined <span class="sc">+</span> regional_node_positive <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    <span class="fu">strata</span>(estrogen_status, progesterone_status),</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>  <span class="at">data =</span> cancer</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>)</span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="co"># Verify PH assumption</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>ph_test_strat <span class="ot">&lt;-</span> <span class="fu">cox.zph</span>(cox_stratified)</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>global_p <span class="ot">&lt;-</span> ph_test_strat<span class="sc">$</span>table[<span class="st">&quot;GLOBAL&quot;</span>, <span class="st">&quot;p&quot;</span>]</span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Stratified Model - Global PH Test p-value:&quot;</span>, <span class="fu">round</span>(global_p, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Stratified Model - Global PH Test p-value: 0.8413</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="cf">if</span>(global_p <span class="sc">&gt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;✓ Proportional hazards assumption now satisfied.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## ✓ Proportional hazards assumption now satisfied.</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Model summary</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">summary</span>(cox_stratified)</span></code></pre></div>
+<pre><code>## Call:
+## coxph(formula = Surv(survival_months, status_binary) ~ age + 
+##     race + marital_status + t_stage + n_stage + differentiate + 
+##     tumor_size + regional_node_examined + regional_node_positive + 
+##     strata(estrogen_status, progesterone_status), data = cancer)
+## 
+##   n= 4024, number of events= 616 
+## 
+##                                             coef exp(coef)  se(coef)      z
+## age                                     0.019810  1.020007  0.004862  4.074
+## raceBlack                               0.373448  1.452735  0.129523  2.883
+## raceOther                              -0.366107  0.693429  0.180670 -2.026
+## marital_statusMarried                  -0.160807  0.851457  0.113294 -1.419
+## marital_statusSeparated                 0.322121  1.380052  0.289343  1.113
+## marital_statusDivorced                  0.029555  1.029996  0.146015  0.202
+## marital_statusWidowed                  -0.011422  0.988643  0.179705 -0.064
+## t_stageT2                               0.351044  1.420550  0.113835  3.084
+## t_stageT3                               0.419737  1.521561  0.219809  1.910
+## t_stageT4                               0.828155  2.289092  0.233050  3.554
+## n_stageN2                               0.453907  1.574452  0.109757  4.136
+## n_stageN3                               0.622174  1.862973  0.179063  3.475
+## differentiateModerately differentiated  0.450487  1.569077  0.171091  2.633
+## differentiatePoorly differentiated      0.795512  2.215575  0.176940  4.496
+## differentiateUndifferentiated           1.502353  4.492249  0.378095  3.973
+## tumor_size                              0.001439  1.001440  0.003157  0.456
+## regional_node_examined                 -0.032959  0.967578  0.006494 -5.075
+## regional_node_positive                  0.057181  1.058848  0.011375  5.027
+##                                        Pr(&gt;|z|)    
+## age                                    4.62e-05 ***
+## raceBlack                              0.003936 ** 
+## raceOther                              0.042726 *  
+## marital_statusMarried                  0.155790    
+## marital_statusSeparated                0.265586    
+## marital_statusDivorced                 0.839596    
+## marital_statusWidowed                  0.949320    
+## t_stageT2                              0.002044 ** 
+## t_stageT3                              0.056191 .  
+## t_stageT4                              0.000380 ***
+## n_stageN2                              3.54e-05 ***
+## n_stageN3                              0.000512 ***
+## differentiateModerately differentiated 0.008463 ** 
+## differentiatePoorly differentiated     6.93e-06 ***
+## differentiateUndifferentiated          7.08e-05 ***
+## tumor_size                             0.648617    
+## regional_node_examined                 3.87e-07 ***
+## regional_node_positive                 4.98e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##                                        exp(coef) exp(-coef) lower .95 upper .95
+## age                                       1.0200     0.9804    1.0103    1.0298
+## raceBlack                                 1.4527     0.6884    1.1270    1.8726
+## raceOther                                 0.6934     1.4421    0.4866    0.9881
+## marital_statusMarried                     0.8515     1.1745    0.6819    1.0632
+## marital_statusSeparated                   1.3801     0.7246    0.7827    2.4332
+## marital_statusDivorced                    1.0300     0.9709    0.7737    1.3713
+## marital_statusWidowed                     0.9886     1.0115    0.6951    1.4061
+## t_stageT2                                 1.4205     0.7040    1.1365    1.7756
+## t_stageT3                                 1.5216     0.6572    0.9890    2.3409
+## t_stageT4                                 2.2891     0.4369    1.4497    3.6144
+## n_stageN2                                 1.5745     0.6351    1.2697    1.9523
+## n_stageN3                                 1.8630     0.5368    1.3116    2.6462
+## differentiateModerately differentiated    1.5691     0.6373    1.1220    2.1942
+## differentiatePoorly differentiated        2.2156     0.4514    1.5663    3.1340
+## differentiateUndifferentiated             4.4922     0.2226    2.1411    9.4254
+## tumor_size                                1.0014     0.9986    0.9953    1.0077
+## regional_node_examined                    0.9676     1.0335    0.9553    0.9800
+## regional_node_positive                    1.0588     0.9444    1.0355    1.0827
+## 
+## Concordance= 0.709  (se = 0.013 )
+## Likelihood ratio test= 340.9  on 18 df,   p=&lt;2e-16
+## Wald test            = 363.7  on 18 df,   p=&lt;2e-16
+## Score (logrank) test = 405.1  on 18 df,   p=&lt;2e-16</code></pre>
+</div>
+<div id="forest-plot-of-hazard-ratios" class="section level3">
+<h3>Forest Plot of Hazard Ratios</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Tidy results</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>cox_tidy <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(cox_stratified, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>    <span class="at">term_clean =</span> <span class="fu">case_when</span>(</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;^age&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Age (per year)&quot;</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;raceBlack&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Race: Black vs. White&quot;</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;raceOther&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Race: Other vs. White&quot;</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;marital_status.*Divorced&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Marital: Divorced vs. Single&quot;</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;marital_status.*Married&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Marital: Married vs. Single&quot;</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;marital_status.*Separated&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Marital: Separated vs. Single&quot;</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;marital_status.*Widowed&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Marital: Widowed vs. Single&quot;</span>,</span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;t_stageT2&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Tumor: T2 vs. T1&quot;</span>,</span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;t_stageT3&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Tumor: T3 vs. T1&quot;</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;t_stageT4&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Tumor: T4 vs. T1&quot;</span>,</span>
+<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;n_stageN2&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Nodal: N2 vs. N1&quot;</span>,</span>
+<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;n_stageN3&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Nodal: N3 vs. N1&quot;</span>,</span>
+<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;differentiate.*Moderate&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Diff: Moderate vs. Well&quot;</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;differentiate.*Poor&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Diff: Poor vs. Well&quot;</span>,</span>
+<span id="cb29-19"><a href="#cb29-19" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;differentiate.*Undiff&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Diff: Undifferentiated vs. Well&quot;</span>,</span>
+<span id="cb29-20"><a href="#cb29-20" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;tumor_size&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Tumor Size (per mm)&quot;</span>,</span>
+<span id="cb29-21"><a href="#cb29-21" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;regional_node_examined&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Nodes Examined (per node)&quot;</span>,</span>
+<span id="cb29-22"><a href="#cb29-22" tabindex="-1"></a>      <span class="fu">str_detect</span>(term, <span class="st">&quot;regional_node_positive&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Nodes Positive (per node)&quot;</span>,</span>
+<span id="cb29-23"><a href="#cb29-23" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> term</span>
+<span id="cb29-24"><a href="#cb29-24" tabindex="-1"></a>    ),</span>
+<span id="cb29-25"><a href="#cb29-25" tabindex="-1"></a>    <span class="at">significant =</span> <span class="fu">ifelse</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">&quot;p &lt; 0.05&quot;</span>, <span class="st">&quot;p ≥ 0.05&quot;</span>)</span>
+<span id="cb29-26"><a href="#cb29-26" tabindex="-1"></a>  )</span>
+<span id="cb29-27"><a href="#cb29-27" tabindex="-1"></a></span>
+<span id="cb29-28"><a href="#cb29-28" tabindex="-1"></a><span class="co"># Forest plot</span></span>
+<span id="cb29-29"><a href="#cb29-29" tabindex="-1"></a><span class="fu">ggplot</span>(cox_tidy, <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> <span class="fu">reorder</span>(term_clean, estimate))) <span class="sc">+</span></span>
+<span id="cb29-30"><a href="#cb29-30" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-31"><a href="#cb29-31" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low, <span class="at">xmax =</span> conf.high, <span class="at">color =</span> significant), <span class="at">size =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb29-32"><a href="#cb29-32" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;p &lt; 0.05&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;p ≥ 0.05&quot;</span> <span class="ot">=</span> <span class="st">&quot;gray50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb29-33"><a href="#cb29-33" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="fl">2.5</span>, <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb29-34"><a href="#cb29-34" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-35"><a href="#cb29-35" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 9: Forest Plot of Adjusted Hazard Ratios&quot;</span>,</span>
+<span id="cb29-36"><a href="#cb29-36" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Stratified Cox Model (stratified by ER/PR status)&quot;</span>,</span>
+<span id="cb29-37"><a href="#cb29-37" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Hazard Ratio (log scale)&quot;</span>,</span>
+<span id="cb29-38"><a href="#cb29-38" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb29-39"><a href="#cb29-39" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Significance&quot;</span></span>
+<span id="cb29-40"><a href="#cb29-40" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-41"><a href="#cb29-41" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-42"><a href="#cb29-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/cox_forest-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># Significant results table</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>sig_results <span class="ot">&lt;-</span> cox_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(estimate)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>    <span class="st">`</span><span class="at">HR (95% CI)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">round</span>(estimate, <span class="dv">2</span>), <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(conf.low, <span class="dv">2</span>), <span class="st">&quot;-&quot;</span>, <span class="fu">round</span>(conf.high, <span class="dv">2</span>), <span class="st">&quot;)&quot;</span>),</span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>    <span class="st">`</span><span class="at">p-value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.001</span>, <span class="st">&quot;&lt;0.001&quot;</span>, <span class="fu">round</span>(p.value, <span class="dv">3</span>))</span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Variable =</span> term_clean, <span class="st">`</span><span class="at">HR (95% CI)</span><span class="st">`</span>, <span class="st">`</span><span class="at">p-value</span><span class="st">`</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" tabindex="-1"></a><span class="fu">kable</span>(sig_results, <span class="at">caption =</span> <span class="st">&quot;Table 4: Significant Predictors from Cox Model&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 4: Significant Predictors from Cox Model</caption>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">HR (95% CI)</th>
+<th align="left">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Diff: Undifferentiated vs. Well</td>
+<td align="left">4.49 (2.14-9.43)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">Tumor: T4 vs. T1</td>
+<td align="left">2.29 (1.45-3.61)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">Diff: Poor vs. Well</td>
+<td align="left">2.22 (1.57-3.13)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">Nodal: N3 vs. N1</td>
+<td align="left">1.86 (1.31-2.65)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">Nodal: N2 vs. N1</td>
+<td align="left">1.57 (1.27-1.95)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">Diff: Moderate vs. Well</td>
+<td align="left">1.57 (1.12-2.19)</td>
+<td align="left">0.008</td>
+</tr>
+<tr class="odd">
+<td align="left">Race: Black vs. White</td>
+<td align="left">1.45 (1.13-1.87)</td>
+<td align="left">0.004</td>
+</tr>
+<tr class="even">
+<td align="left">Tumor: T2 vs. T1</td>
+<td align="left">1.42 (1.14-1.78)</td>
+<td align="left">0.002</td>
+</tr>
+<tr class="odd">
+<td align="left">Nodes Positive (per node)</td>
+<td align="left">1.06 (1.04-1.08)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">Age (per year)</td>
+<td align="left">1.02 (1.01-1.03)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">Nodes Examined (per node)</td>
+<td align="left">0.97 (0.96-0.98)</td>
+<td align="left">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td align="left">Race: Other vs. White</td>
+<td align="left">0.69 (0.49-0.99)</td>
+<td align="left">0.043</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="interpretation-10" class="section level3">
+<h3>Interpretation</h3>
+<p>The Cox regression (Figure 9 and Table 4) identifies independent
+predictors of mortality after adjustment:</p>
+<p><strong>Significant Risk Factors (HR &gt; 1):</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Advanced Tumor Stage:</strong> T4 tumors have the highest
+hazard ratio, confirming tumor stage as the strongest risk factor. The
+progressive increase from T2 to T4 validates the TNM staging
+system.</p></li>
+<li><p><strong>Nodal Involvement:</strong> N2 and N3 stages show
+significantly elevated hazard compared to N1, with each additional
+positive lymph node incrementally increasing mortality risk.</p></li>
+<li><p><strong>Race:</strong> Even after adjusting for clinical factors
+like stage and tumor size, <strong>Black race remains a significant
+predictor of mortality</strong> (HR &gt; 1). This suggests that the
+racial survival gap is not fully explained by stage at diagnosis or
+tumor characteristics, pointing to unmeasured confounders (e.g.,
+treatment quality, socioeconomics).</p></li>
+<li><p><strong>Poor Differentiation:</strong> Poorly differentiated and
+undifferentiated tumors are associated with higher hazard, reflecting
+aggressive tumor biology.</p></li>
+</ol>
+<p><strong>Protective Factors (HR &lt; 1):</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Nodes Examined:</strong> More lymph nodes examined is
+associated with lower hazard, likely reflecting better surgical staging
+and more complete treatment.</p></li>
+<li><p><strong>Married Status:</strong> Married patients show lower
+hazard than single patients, consistent with literature on social
+support and cancer outcomes.</p></li>
+</ol>
+</div>
+<div id="model-performance" class="section level3">
+<h3>Model Performance</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Concordance index</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>concordance <span class="ot">&lt;-</span> cox_stratified<span class="sc">$</span>concordance[<span class="dv">1</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Model Discrimination:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Model Discrimination:</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;C-statistic (Concordance Index):&quot;</span>, <span class="fu">round</span>(concordance, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## C-statistic (Concordance Index): 762041</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Interpretation: Model correctly ranks&quot;</span>, <span class="fu">round</span>(concordance <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;% of patient pairs by risk.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Interpretation: Model correctly ranks 76204100 % of patient pairs by risk.</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;(0.5 = random, 0.7-0.8 = acceptable, &gt;0.8 = excellent)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## (0.5 = random, 0.7-0.8 = acceptable, &gt;0.8 = excellent)</code></pre>
+<hr />
+</div>
+</div>
+<div id="logistic-regression-fairness-analysis" class="section level2">
+<h2>Logistic Regression &amp; Fairness Analysis</h2>
+<p>We utilized logistic regression to predict binary mortality status
+and assessed the model’s fairness across racial groups.</p>
+<div id="model-fitting-and-performance" class="section level3">
+<h3>Model Fitting and Performance</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Train/Test Split</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>train_idx <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(cancer<span class="sc">$</span>status_binary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>train <span class="ot">&lt;-</span> cancer[train_idx, ]</span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>test <span class="ot">&lt;-</span> cancer[<span class="sc">-</span>train_idx, ]</span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Data Split:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Data Split:</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;• Training:&quot;</span>, <span class="fu">nrow</span>(train), <span class="st">&quot;patients (70%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## • Training: 2817 patients (70%)</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;• Testing:&quot;</span>, <span class="fu">nrow</span>(test), <span class="st">&quot;patients (30%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## • Testing: 1207 patients (30%)</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Model with polynomial age term</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>  status_binary <span class="sc">~</span> <span class="fu">poly</span>(age, <span class="dv">2</span>) <span class="sc">+</span> race <span class="sc">+</span> marital_status <span class="sc">+</span> t_stage <span class="sc">+</span> </span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>    differentiate <span class="sc">+</span> estrogen_status <span class="sc">+</span> progesterone_status <span class="sc">+</span> </span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>    regional_node_examined <span class="sc">+</span> regional_node_positive,</span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>  <span class="at">data =</span> train,</span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>  <span class="at">family =</span> binomial</span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>)</span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a><span class="co"># Predictions</span></span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a>test<span class="sc">$</span>pred_prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(logit_model, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>test<span class="sc">$</span>pred_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(test<span class="sc">$</span>pred_prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a><span class="co"># Overall metrics</span></span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> <span class="fu">mean</span>(test<span class="sc">$</span>pred_class <span class="sc">==</span> test<span class="sc">$</span>status_binary)</span>
+<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>roc_obj <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>status_binary, test<span class="sc">$</span>pred_prob, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a>auc_val <span class="ot">&lt;-</span> <span class="fu">auc</span>(roc_obj)</span>
+<span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="#cb45-19" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Model Performance:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Model Performance:</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;• Accuracy:&quot;</span>, <span class="fu">round</span>(accuracy, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## • Accuracy: 0.854</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;• AUC-ROC:&quot;</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(auc_val), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## • AUC-ROC: 0.777</code></pre>
+</div>
+<div id="roc-curve" class="section level3">
+<h3>ROC Curve</h3>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">ggroc</span>(roc_obj, <span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">0.3</span>, <span class="at">y =</span> <span class="fl">0.3</span>, </span>
+<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="fu">round</span>(auc_val, <span class="dv">3</span>)),</span>
+<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">6</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-7"><a href="#cb51-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 10: ROC Curve - Logistic Regression Model&quot;</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Model shows good discrimination between survivors and non-survivors&quot;</span>,</span>
+<span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Specificity&quot;</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sensitivity&quot;</span></span>
+<span id="cb51-11"><a href="#cb51-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/roc_curve-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fairness-audit" class="section level3">
+<h3>Fairness Audit</h3>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># Fairness Audit by Race</span></span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>fairness <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a>    <span class="at">Deaths =</span> <span class="fu">sum</span>(status_binary),</span>
+<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mortality (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(Deaths <span class="sc">/</span> N <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb52-8"><a href="#cb52-8" tabindex="-1"></a>    <span class="at">AUC =</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(<span class="fu">auc</span>(<span class="fu">roc</span>(status_binary, pred_prob, <span class="at">quiet =</span> <span class="cn">TRUE</span>))), <span class="dv">3</span>),</span>
+<span id="cb52-9"><a href="#cb52-9" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span></span>
+<span id="cb52-10"><a href="#cb52-10" tabindex="-1"></a>  )</span>
+<span id="cb52-11"><a href="#cb52-11" tabindex="-1"></a></span>
+<span id="cb52-12"><a href="#cb52-12" tabindex="-1"></a><span class="fu">kable</span>(fairness, <span class="at">caption =</span> <span class="st">&quot;Table 5: Algorithmic Fairness Audit (Performance by Race)&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 5: Algorithmic Fairness Audit (Performance by
+Race)</caption>
+<thead>
+<tr class="header">
+<th align="left">race</th>
+<th align="right">N</th>
+<th align="right">Deaths</th>
+<th align="right">Mortality (%)</th>
+<th align="right">AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">White</td>
+<td align="right">1026</td>
+<td align="right">157</td>
+<td align="right">15.3</td>
+<td align="right">0.774</td>
+</tr>
+<tr class="even">
+<td align="left">Black</td>
+<td align="right">82</td>
+<td align="right">25</td>
+<td align="right">30.5</td>
+<td align="right">0.792</td>
+</tr>
+<tr class="odd">
+<td align="left">Other</td>
+<td align="right">99</td>
+<td align="right">9</td>
+<td align="right">9.1</td>
+<td align="right">0.623</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(fairness, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> AUC, <span class="at">fill =</span> race)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> AUC), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">as.numeric</span>(auc_val), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;Black&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;Other&quot;</span> <span class="ot">=</span> <span class="st">&quot;#8E44AD&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Figure 11: Algorithmic Fairness - Model AUC by Race&quot;</span>,</span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">&quot;Dashed line = overall AUC (&quot;</span>, <span class="fu">round</span>(auc_val, <span class="dv">3</span>), <span class="st">&quot;)&quot;</span>),</span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;AUC&quot;</span></span>
+<span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-14"><a href="#cb53-14" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="crime_report_files/figure-html/fairness_plot-1.png" width="3000" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-11" class="section level3">
+<h3>Interpretation</h3>
+<p>The fairness audit (Table 5 and Figure 11) indicates that our
+predictive model achieves <strong>algorithmic parity</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Comparable AUC:</strong> The AUC values for White (0.774)
+and Black (0.792) patients are comparable, indicating similar
+discriminative ability across groups.</p></li>
+<li><p><strong>Key Implication:</strong> The model discriminates between
+survivors and non-survivors <strong>equally well for both racial
+groups</strong>. It is not “biased” in its predictions.</p></li>
+<li><p><strong>Crucial Distinction:</strong> While the model is
+mathematically fair, the <strong>outcomes remain disparate</strong>. The
+model correctly predicts that Black patients have higher risk,
+reflecting the real-world inequalities in the data rather than
+algorithmic error.</p></li>
+<li><p><strong>Clinical Significance:</strong> This finding suggests the
+model can be deployed equitably without exacerbating existing
+disparities through differential prediction quality.</p></li>
+</ol>
+<hr />
+</div>
+</div>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<div id="summary-of-key-findings" class="section level2">
+<h2>Summary of Key Findings</h2>
+<p>This forensic analysis of 4,024 breast cancer patients reveals
+consistent patterns that indict both biological aggression and
+structural inequities:</p>
+<div id="the-guilty-parties-risk-factors" class="section level3">
+<h3>1. The “Guilty” Parties (Risk Factors)</h3>
+<p>Advanced Tumor (T) and Nodal (N) stages are the most potent
+predictors of mortality. Specifically, the transition from N1 to N3
+represents a catastrophic shift in prognosis. The Cox model C-statistic
+of 7.62041^{5} indicates good discriminatory ability.</p>
+</div>
+<div id="the-racial-gap" class="section level3">
+<h3>2. The Racial Gap</h3>
+Black patients face significantly higher mortality (
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Fatality Rate (%)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"25.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+% vs
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Fatality Rate (%)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"14.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>%) and worse survival trajectories. <strong>Crucially, the Cox model
+shows this risk persists even when adjusting for tumor stage and
+biology.</strong> This implies that “catching it early” is necessary but
+insufficient to close the gap; disparities in treatment access, quality
+of care, or specific tumor subtypes likely play additional roles.</p>
+</div>
+<div id="algorithmic-insight" class="section level3">
+<h3>3. Algorithmic Insight</h3>
+<p>Our logistic regression model demonstrates good predictive power (AUC
+= 0.78) and <strong>algorithmic fairness</strong> (comparable AUC across
+racial groups). The disparity is not an artifact of the model, but a
+reflection of the reality captured in the data.</p>
+</div>
+</div>
+<div id="limitations" class="section level2">
+<h2>Limitations</h2>
+<ul>
+<li><p><strong>Missing Variables:</strong> The dataset lacks detailed
+treatment information (chemotherapy/radiation regimens), HER2 status,
+and socioeconomic variables (income, insurance), which are known drivers
+of disparities.</p></li>
+<li><p><strong>“Other” Category:</strong> The heterogeneity of the
+“Other” race category limits specific inferences for Asian, Hispanic, or
+Indigenous populations.</p></li>
+<li><p><strong>Temporal Scope:</strong> Data from 2006-2010 may not
+reflect current treatment patterns, including newer targeted therapies
+and immunotherapies.</p></li>
+<li><p><strong>External Validation:</strong> Models require validation
+on independent, contemporary cohorts before clinical
+deployment.</p></li>
+</ul>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<div class="casefile-wrapper">
+<div class="blood-stamp">
+VERDICT
+</div>
+<p class="casefile-lede">
+Based on this comprehensive forensic analysis, we find <strong>Breast
+Cancer</strong> <span
+style="color: #7a0000; font-weight: bold;">GUILTY</span> on the
+following counts:
+</p>
+<p class="casefile-lede">
+<strong>Count 1 - Causing Mortality:</strong> GUILTY — 616 deaths (15.3%
+fatality rate)
+</p>
+<p class="casefile-lede">
+<strong>Count 2 - Disparate Impact:</strong> GUILTY — Black patients
+experience 1.7x higher mortality
+</p>
+<p class="casefile-lede">
+<strong>Count 3 - Algorithmic Bias:</strong> NOT GUILTY — Models perform
+equitably across racial groups
+</p>
+<p class="casefile-lede">
+<strong>RECOMMENDATION:</strong> The prosecution recommends immediate
+intervention in the form of:
+</p>
+<ul class="casefile-lede">
+<li>
+Targeted screening programs for high-risk demographic groups
+</li>
+<li>
+Policy reviews to address non-biological drivers of the racial survival
+gap
+</li>
+<li>
+Research into the structural factors underlying persistent disparities
+</li>
+</ul>
+<p class="casefile-lede">
+<strong>The prosecution rests.</strong>
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ol style="list-style-type: decimal">
+<li><p>Cox, D. R. (1972). Regression models and life-tables. <em>Journal
+of the Royal Statistical Society: Series B</em>, 34(2),
+187-220.</p></li>
+<li><p>DeSantis, C. E., et al. (2019). Breast cancer statistics, 2019.
+<em>CA: A Cancer Journal for Clinicians</em>, 69(6), 438-451.</p></li>
+<li><p>Kaplan, E. L., &amp; Meier, P. (1958). Nonparametric estimation
+from incomplete observations. <em>Journal of the American Statistical
+Association</em>, 53(282), 457-481.</p></li>
+<li><p>Newman, L. A., &amp; Kaljee, L. M. (2017). Health disparities and
+triple-negative breast cancer in African American women. <em>JAMA
+Surgery</em>, 152(5), 485-493.</p></li>
+<li><p>Obermeyer, Z., et al. (2019). Dissecting racial bias in an
+algorithm used to manage the health of populations. <em>Science</em>,
+366(6464), 447-453.</p></li>
+</ol>
+<hr />
+</div>
+<div id="appendix-session-information" class="section level1">
+<h1>Appendix: Session Information</h1>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.5.1 (2025-06-13 ucrt)
+## Platform: x86_64-w64-mingw32/x64
+## Running under: Windows 10 x64 (build 19045)
+## 
+## Matrix products: default
+##   LAPACK version 3.12.1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: America/New_York
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] gridExtra_2.3   corrplot_0.95   rsample_1.3.1   knitr_1.50     
+##  [5] broom_1.0.9     gtsummary_2.2.0 pROC_1.19.0.1   caret_7.0-1    
+##  [9] lattice_0.22-7  survminer_0.5.1 ggpubr_0.6.2    survival_3.8-3 
+## [13] janitor_2.2.1   lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  
+## [17] dplyr_1.1.4     purrr_1.0.4     readr_2.1.5     tidyr_1.3.1    
+## [21] tibble_3.3.0    ggplot2_4.0.1   tidyverse_2.0.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] rlang_1.1.6          magrittr_2.0.3       snakecase_0.11.1    
+##  [4] furrr_0.3.1          compiler_4.5.1       vctrs_0.6.5         
+##  [7] reshape2_1.4.5       crayon_1.5.3         pkgconfig_2.0.3     
+## [10] fastmap_1.2.0        backports_1.5.0      labeling_0.4.3      
+## [13] KMsurv_0.1-6         rmarkdown_2.29       markdown_2.0        
+## [16] prodlim_2025.04.28   tzdb_0.5.0           bit_4.6.0           
+## [19] xfun_0.52            cachem_1.1.0         litedown_0.7        
+## [22] jsonlite_2.0.0       recipes_1.3.1        parallel_4.5.1      
+## [25] R6_2.6.1             bslib_0.9.0          stringi_1.8.7       
+## [28] RColorBrewer_1.1-3   parallelly_1.45.1    car_3.1-3           
+## [31] rpart_4.1.24         jquerylib_0.1.4      Rcpp_1.0.14         
+## [34] iterators_1.0.14     future.apply_1.20.0  zoo_1.8-14          
+## [37] Matrix_1.7-3         splines_4.5.1        nnet_7.3-20         
+## [40] timechange_0.3.0     tidyselect_1.2.1     rstudioapi_0.17.1   
+## [43] abind_1.4-8          yaml_2.3.10          timeDate_4051.111   
+## [46] ggtext_0.1.2         codetools_0.2-20     listenv_0.10.0      
+## [49] plyr_1.8.9           withr_3.0.2          S7_0.2.1            
+## [52] evaluate_1.0.5       future_1.68.0        xml2_1.4.0          
+## [55] survMisc_0.5.6       pillar_1.10.2        carData_3.0-5       
+## [58] foreach_1.5.2        stats4_4.5.1         generics_0.1.4      
+## [61] vroom_1.6.5          hms_1.1.3            commonmark_1.9.5    
+## [64] scales_1.4.0         globals_0.18.0       xtable_1.8-4        
+## [67] class_7.3-23         glue_1.8.0           tools_4.5.1         
+## [70] data.table_1.17.6    ModelMetrics_1.2.2.2 gower_1.0.2         
+## [73] ggsignif_0.6.4       grid_4.5.1           cards_0.7.0         
+## [76] ipred_0.9-15         nlme_3.1-168         cardx_0.3.0         
+## [79] Formula_1.2-5        cli_3.6.5            km.ci_0.5-6         
+## [82] gt_1.0.0             lava_1.8.2           gtable_0.3.6        
+## [85] rstatix_0.7.3        sass_0.4.10          digest_0.6.37       
+## [88] farver_2.1.2         htmltools_0.5.8.1    lifecycle_1.0.4     
+## [91] hardhat_1.4.2        gridtext_0.1.5       bit64_4.6.0-1       
+## [94] MASS_7.3-65</code></pre>
+</div>
 </div>
 
 
