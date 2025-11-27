@@ -62,19 +62,17 @@ cancer <- cancer %>%
 The histogram of survival time shows a right-skewed distribution: many victims live with the consequences of breast cancer for several years, while a subset experience earlier “fatal” outcomes. Coloring by vital status highlights that deaths cluster at shorter follow-up times, as we would expect when a dangerous criminal strikes early.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
-km_race <- survfit2(Surv(survival_months, status_bin) ~ race, data = cancer)
-
-p_km_race <- ggsurvfit(km_race) +
-  add_risktable() +
-  labs(
-  title = "Survival by Race",
-  x = "Months Since Diagnosis",
-  y = "Survival Probability",
-  color = "Race"
-  ) +
-  theme_minimal()
-
-p_km_race
+#KM plot by race 
+  km_plot <- survfit(Surv(survival_months, status_bin) ~ race, data = cancer)
+  km_ggplot <- ggsurvplot(km_plot, 
+                          data = cancer, 
+                          risk.table = TRUE, 
+                          conf.int = TRUE,
+                          ggtheme = theme_minimal()) 
+  
+  km_plotly <- ggplotly(km_ggplot$plot)
+  
+  km_plotly
 ```
 
 
