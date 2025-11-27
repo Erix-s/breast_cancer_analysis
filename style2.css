@@ -26,8 +26,8 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 60px;
-  width: 2px;
+  left: 40px;
+  width: 1px;
   height: 100%;
   background: rgba(200,60,60,0.55);     /* red margin rule */
   pointer-events: none;
