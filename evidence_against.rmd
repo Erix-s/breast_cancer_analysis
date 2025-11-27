@@ -29,6 +29,8 @@ library(ggsurvfit)
 library(rsample)
 library(broom)
 library(purrr)
+library(plotly)
+library(flexdashboard)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
