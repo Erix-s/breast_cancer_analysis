@@ -1,5 +1,13 @@
 name: "Yay internet!"
 output_dir: "."
+
 output:
   html_document:
-    theme: cerulean
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    theme: flatly
+    highlight: tango
+    df_print: paged
+    css: style2.css

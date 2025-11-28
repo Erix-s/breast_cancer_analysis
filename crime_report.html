@@ -349,8 +349,9 @@ Front</a></p>
 Crime Report
 </h1>
 <hr />
-<div id="motivation" class="section level1">
-<h1>Motivation</h1>
+<h2 class="casefile-subtitle">
+Motivation
+</h2>
 <p>Breast cancer remains one of the most prevalent cancers worldwide,
 accounting for a substantial proportion of cancer incidence and health
 burden among women. Despite significant advances in early detection and
@@ -389,9 +390,9 @@ whether the evidence is strong enough to “convict” breast cancer of
 systematic harm, and critically, whether that harm falls equally across
 all communities.</p>
 <hr />
-</div>
-<div id="related-work" class="section level1">
-<h1>Related Work</h1>
+<h2 class="casefile-subtitle">
+Related Work
+</h2>
 <p>Our analysis draws on established methodological frameworks and prior
 research in breast cancer epidemiology:</p>
 <p><strong>Methodological Foundations:</strong></p>
@@ -428,9 +429,9 @@ The dataset contains 4,024 female breast cancer patients diagnosed with
 infiltrating duct and lobular carcinoma between 2006-2010, with
 follow-up for survival outcomes.</p>
 <hr />
-</div>
-<div id="initial-questions" class="section level1">
-<h1>Initial Questions</h1>
+<h2 class="casefile-subtitle">
+Initial Questions
+</h2>
 <p>Our investigation began with the following primary questions:</p>
 <ol style="list-style-type: decimal">
 <li><strong>What clinical and demographic factors are associated with
@@ -457,8 +458,9 @@ survivors from non-survivors?</li>
 resampling?</li>
 </ul></li>
 </ol>
-<div id="evolution-of-questions" class="section level2">
-<h2>Evolution of Questions</h2>
+<h3 class="casefile-subtitle">
+Evolution of Questions
+</h3>
 <p>As our analysis progressed, new questions emerged:</p>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Are our predictive models algorithmically fair?</strong>
@@ -474,12 +476,12 @@ underlying structural factors?</li>
 </ul></li>
 </ol>
 <hr />
-</div>
-</div>
-<div id="data" class="section level1">
-<h1>Data</h1>
-<div id="data-source-and-description" class="section level2">
-<h2>Data Source and Description</h2>
+<h2 class="casefile-subtitle">
+Data
+</h2>
+<h3 class="casefile-subtitle">
+Data Source and Description
+</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Load and inspect the raw data</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>cancer_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/cancer_data.csv&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
@@ -490,9 +492,9 @@ underlying structural factors?</li>
 from the SEER registry. Key variables include Age, Race, Marital Status,
 TNM Stage (T-Stage, N-Stage), Tumor Differentiation,
 Estrogen/Progesterone Status, Survival Months, and Vital Status.</p>
-</div>
-<div id="data-cleaning-and-preprocessing" class="section level2">
-<h2>Data Cleaning and Preprocessing</h2>
+<h3 class="casefile-subtitle">
+Data Cleaning and Preprocessing
+</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Clean and prepare data</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>cancer <span class="ot">&lt;-</span> cancer_raw <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
@@ -535,58 +537,85 @@ proper interpretation in regression models. The <code>grade</code>
 variable was removed due to multicollinearity with
 <code>differentiate</code>. A binary outcome variable was created for
 logistic regression.</p>
-</div>
-<div id="descriptive-statistics" class="section level2">
-<h2>Descriptive Statistics</h2>
+<h3 class="casefile-subtitle">
+Descriptive Statistics
+</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Overall summary statistics</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>desc_table <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">select</span>(age, race, marital_status, t_stage, n_stage, differentiate,</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>         estrogen_status, progesterone_status, tumor_size,</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>         regional_node_examined, regional_node_positive, survival_months, status) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    <span class="at">by =</span> status,</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;no&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>      age <span class="sc">~</span> <span class="st">&quot;Age (years)&quot;</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>      race <span class="sc">~</span> <span class="st">&quot;Race&quot;</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>      marital_status <span class="sc">~</span> <span class="st">&quot;Marital Status&quot;</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>      t_stage <span class="sc">~</span> <span class="st">&quot;Tumor Stage (T)&quot;</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>      n_stage <span class="sc">~</span> <span class="st">&quot;Nodal Stage (N)&quot;</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>      differentiate <span class="sc">~</span> <span class="st">&quot;Tumor Differentiation&quot;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>      estrogen_status <span class="sc">~</span> <span class="st">&quot;Estrogen Receptor&quot;</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>      progesterone_status <span class="sc">~</span> <span class="st">&quot;Progesterone Receptor&quot;</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>      tumor_size <span class="sc">~</span> <span class="st">&quot;Tumor Size (mm)&quot;</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>      regional_node_examined <span class="sc">~</span> <span class="st">&quot;Nodes Examined&quot;</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>      regional_node_positive <span class="sc">~</span> <span class="st">&quot;Nodes Positive&quot;</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>      survival_months <span class="sc">~</span> <span class="st">&quot;Survival Time (months)&quot;</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>    ),</span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} ({p}%)&quot;</span></span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>    )</span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>desc_table</span></code></pre></div>
-<div id="kvywfqbvuu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kvywfqbvuu table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    age, race, marital_status, t_stage, n_stage, differentiate,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    estrogen_status, progesterone_status, tumor_size,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>    regional_node_examined, regional_node_positive,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    survival_months, status</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>    <span class="at">by =</span> status,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;no&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>      age <span class="sc">~</span> <span class="st">&quot;Age (years)&quot;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>      race <span class="sc">~</span> <span class="st">&quot;Race&quot;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>      marital_status <span class="sc">~</span> <span class="st">&quot;Marital Status&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>      t_stage <span class="sc">~</span> <span class="st">&quot;Tumor Stage (T)&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>      n_stage <span class="sc">~</span> <span class="st">&quot;Nodal Stage (N)&quot;</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>      differentiate <span class="sc">~</span> <span class="st">&quot;Tumor Differentiation&quot;</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>      estrogen_status <span class="sc">~</span> <span class="st">&quot;Estrogen Receptor&quot;</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>      progesterone_status <span class="sc">~</span> <span class="st">&quot;Progesterone Receptor&quot;</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>      tumor_size <span class="sc">~</span> <span class="st">&quot;Tumor Size (mm)&quot;</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>      regional_node_examined <span class="sc">~</span> <span class="st">&quot;Nodes Examined&quot;</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>      regional_node_positive <span class="sc">~</span> <span class="st">&quot;Nodes Positive&quot;</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>      survival_months <span class="sc">~</span> <span class="st">&quot;Survival Time (months)&quot;</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>    ),</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} ({p}%)&quot;</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>    )</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>desc_table <span class="sc">%&gt;%</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>    <span class="at">table.background.color =</span> <span class="st">&quot;#EFEDE2&quot;</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>    <span class="at">heading.background.color =</span> <span class="st">&quot;#EFEDE2&quot;</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>    <span class="at">column_labels.background.color =</span> <span class="st">&quot;#EFEDE2&quot;</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a>    <span class="at">table.border.top.color =</span> <span class="st">&quot;#d2c9a4&quot;</span>,</span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>    <span class="at">table.border.bottom.color =</span> <span class="st">&quot;#d2c9a4&quot;</span>,</span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a>    <span class="at">column_labels.border.top.color =</span> <span class="st">&quot;#d2c9a4&quot;</span>,</span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>    <span class="at">column_labels.border.bottom.color =</span> <span class="st">&quot;#d2c9a4&quot;</span>,</span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>    <span class="at">data_row.padding =</span> <span class="fu">px</span>(<span class="dv">6</span>),</span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>    <span class="at">table.font.names =</span> <span class="st">&quot;Courier New&quot;</span></span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>()</span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_borders</span>(<span class="at">color =</span> <span class="st">&quot;#d2c9a4&quot;</span>, <span class="at">sides =</span> <span class="st">&quot;all&quot;</span>),</span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>()</span>
+<span id="cb7-55"><a href="#cb7-55" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-56"><a href="#cb7-56" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb7-57"><a href="#cb7-57" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_borders</span>(<span class="at">color =</span> <span class="st">&quot;#d2c9a4&quot;</span>, <span class="at">sides =</span> <span class="st">&quot;all&quot;</span>),</span>
+<span id="cb7-58"><a href="#cb7-58" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>()</span>
+<span id="cb7-59"><a href="#cb7-59" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="jcoiysmgyk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jcoiysmgyk table {
+  font-family: 'Courier New';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kvywfqbvuu thead, #kvywfqbvuu tbody, #kvywfqbvuu tfoot, #kvywfqbvuu tr, #kvywfqbvuu td, #kvywfqbvuu th {
+#jcoiysmgyk thead, #jcoiysmgyk tbody, #jcoiysmgyk tfoot, #jcoiysmgyk tr, #jcoiysmgyk td, #jcoiysmgyk th {
   border-style: none;
 }
 
-#kvywfqbvuu p {
+#jcoiysmgyk p {
   margin: 0;
   padding: 0;
 }
 
-#kvywfqbvuu .gt_table {
+#jcoiysmgyk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -596,28 +625,28 @@ logistic regression.</p>
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   width: auto;
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D2C9A4;
   border-right-style: none;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D2C9A4;
   border-left-style: none;
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_caption {
+#jcoiysmgyk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kvywfqbvuu .gt_title {
+#jcoiysmgyk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -625,11 +654,11 @@ logistic regression.</p>
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
-  border-bottom-color: #FFFFFF;
+  border-bottom-color: #EFEDE2;
   border-bottom-width: 0;
 }
 
-#kvywfqbvuu .gt_subtitle {
+#jcoiysmgyk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -637,14 +666,14 @@ logistic regression.</p>
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-color: #FFFFFF;
+  border-top-color: #EFEDE2;
   border-top-width: 0;
 }
 
-#kvywfqbvuu .gt_heading {
-  background-color: #FFFFFF;
+#jcoiysmgyk .gt_heading {
+  background-color: #EFEDE2;
   text-align: center;
-  border-bottom-color: #FFFFFF;
+  border-bottom-color: #EFEDE2;
   border-left-style: none;
   border-left-width: 1px;
   border-left-color: #D3D3D3;
@@ -653,19 +682,19 @@ logistic regression.</p>
   border-right-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_bottom_border {
+#jcoiysmgyk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_col_headings {
+#jcoiysmgyk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-top-color: #D2C9A4;
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
+  border-bottom-color: #D2C9A4;
   border-left-style: none;
   border-left-width: 1px;
   border-left-color: #D3D3D3;
@@ -674,9 +703,9 @@ logistic regression.</p>
   border-right-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_col_heading {
+#jcoiysmgyk .gt_col_heading {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: normal;
   text-transform: inherit;
@@ -694,9 +723,9 @@ logistic regression.</p>
   overflow-x: hidden;
 }
 
-#kvywfqbvuu .gt_column_spanner_outer {
+#jcoiysmgyk .gt_column_spanner_outer {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: normal;
   text-transform: inherit;
@@ -706,18 +735,18 @@ logistic regression.</p>
   padding-right: 4px;
 }
 
-#kvywfqbvuu .gt_column_spanner_outer:first-child {
+#jcoiysmgyk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kvywfqbvuu .gt_column_spanner_outer:last-child {
+#jcoiysmgyk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kvywfqbvuu .gt_column_spanner {
+#jcoiysmgyk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
+  border-bottom-color: #D2C9A4;
   vertical-align: bottom;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -726,17 +755,17 @@ logistic regression.</p>
   width: 100%;
 }
 
-#kvywfqbvuu .gt_spanner_row {
+#jcoiysmgyk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kvywfqbvuu .gt_group_heading {
+#jcoiysmgyk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -756,10 +785,10 @@ logistic regression.</p>
   text-align: left;
 }
 
-#kvywfqbvuu .gt_empty_group_heading {
+#jcoiysmgyk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: initial;
   border-top-style: solid;
@@ -771,17 +800,17 @@ logistic regression.</p>
   vertical-align: middle;
 }
 
-#kvywfqbvuu .gt_from_md > :first-child {
+#jcoiysmgyk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kvywfqbvuu .gt_from_md > :last-child {
+#jcoiysmgyk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kvywfqbvuu .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
+#jcoiysmgyk .gt_row {
+  padding-top: 6px;
+  padding-bottom: 6px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
@@ -798,9 +827,9 @@ logistic regression.</p>
   overflow-x: hidden;
 }
 
-#kvywfqbvuu .gt_stub {
+#jcoiysmgyk .gt_stub {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -811,9 +840,9 @@ logistic regression.</p>
   padding-right: 5px;
 }
 
-#kvywfqbvuu .gt_stub_row_group {
+#jcoiysmgyk .gt_stub_row_group {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -825,17 +854,17 @@ logistic regression.</p>
   vertical-align: top;
 }
 
-#kvywfqbvuu .gt_row_group_first td {
+#jcoiysmgyk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kvywfqbvuu .gt_row_group_first th {
+#jcoiysmgyk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kvywfqbvuu .gt_summary_row {
+#jcoiysmgyk .gt_summary_row {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   text-transform: inherit;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -843,16 +872,16 @@ logistic regression.</p>
   padding-right: 5px;
 }
 
-#kvywfqbvuu .gt_first_summary_row {
+#jcoiysmgyk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_first_summary_row.thick {
+#jcoiysmgyk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kvywfqbvuu .gt_last_summary_row {
+#jcoiysmgyk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -862,9 +891,9 @@ logistic regression.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_grand_summary_row {
+#jcoiysmgyk .gt_grand_summary_row {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   text-transform: inherit;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -872,7 +901,7 @@ logistic regression.</p>
   padding-right: 5px;
 }
 
-#kvywfqbvuu .gt_first_grand_summary_row {
+#jcoiysmgyk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -882,7 +911,7 @@ logistic regression.</p>
   border-top-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_last_grand_summary_row_top {
+#jcoiysmgyk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -892,11 +921,11 @@ logistic regression.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_striped {
+#jcoiysmgyk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kvywfqbvuu .gt_table_body {
+#jcoiysmgyk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -905,9 +934,9 @@ logistic regression.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_footnotes {
+#jcoiysmgyk .gt_footnotes {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -919,7 +948,7 @@ logistic regression.</p>
   border-right-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_footnote {
+#jcoiysmgyk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -928,9 +957,9 @@ logistic regression.</p>
   padding-right: 5px;
 }
 
-#kvywfqbvuu .gt_sourcenotes {
+#jcoiysmgyk .gt_sourcenotes {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #EFEDE2;
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -942,7 +971,7 @@ logistic regression.</p>
   border-right-color: #D3D3D3;
 }
 
-#kvywfqbvuu .gt_sourcenote {
+#jcoiysmgyk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -950,264 +979,264 @@ logistic regression.</p>
   padding-right: 5px;
 }
 
-#kvywfqbvuu .gt_left {
+#jcoiysmgyk .gt_left {
   text-align: left;
 }
 
-#kvywfqbvuu .gt_center {
+#jcoiysmgyk .gt_center {
   text-align: center;
 }
 
-#kvywfqbvuu .gt_right {
+#jcoiysmgyk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kvywfqbvuu .gt_font_normal {
+#jcoiysmgyk .gt_font_normal {
   font-weight: normal;
 }
 
-#kvywfqbvuu .gt_font_bold {
+#jcoiysmgyk .gt_font_bold {
   font-weight: bold;
 }
 
-#kvywfqbvuu .gt_font_italic {
+#jcoiysmgyk .gt_font_italic {
   font-style: italic;
 }
 
-#kvywfqbvuu .gt_super {
+#jcoiysmgyk .gt_super {
   font-size: 65%;
 }
 
-#kvywfqbvuu .gt_footnote_marks {
+#jcoiysmgyk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kvywfqbvuu .gt_asterisk {
+#jcoiysmgyk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kvywfqbvuu .gt_indent_1 {
+#jcoiysmgyk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kvywfqbvuu .gt_indent_2 {
+#jcoiysmgyk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kvywfqbvuu .gt_indent_3 {
+#jcoiysmgyk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kvywfqbvuu .gt_indent_4 {
+#jcoiysmgyk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kvywfqbvuu .gt_indent_5 {
+#jcoiysmgyk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kvywfqbvuu .katex-display {
+#jcoiysmgyk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kvywfqbvuu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jcoiysmgyk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
 N = 4,024</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>Alive</strong><br />
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;" scope="col" id="stat_1"><span class='gt_from_md'><strong>Alive</strong><br />
 N = 3,408</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Dead</strong><br />
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;" scope="col" id="stat_2"><span class='gt_from_md'><strong>Dead</strong><br />
 N = 616</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Age (years)</td>
-<td headers="stat_0" class="gt_row gt_center">54 (9)</td>
-<td headers="stat_1" class="gt_row gt_center">54 (9)</td>
-<td headers="stat_2" class="gt_row gt_center">55 (10)</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Race</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    White</td>
-<td headers="stat_0" class="gt_row gt_center">3,413 (85%)</td>
-<td headers="stat_1" class="gt_row gt_center">2,903 (85%)</td>
-<td headers="stat_2" class="gt_row gt_center">510 (83%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Black</td>
-<td headers="stat_0" class="gt_row gt_center">291 (7.2%)</td>
-<td headers="stat_1" class="gt_row gt_center">218 (6.4%)</td>
-<td headers="stat_2" class="gt_row gt_center">73 (12%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Other</td>
-<td headers="stat_0" class="gt_row gt_center">320 (8.0%)</td>
-<td headers="stat_1" class="gt_row gt_center">287 (8.4%)</td>
-<td headers="stat_2" class="gt_row gt_center">33 (5.4%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Marital Status</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Single</td>
-<td headers="stat_0" class="gt_row gt_center">615 (15%)</td>
-<td headers="stat_1" class="gt_row gt_center">511 (15%)</td>
-<td headers="stat_2" class="gt_row gt_center">104 (17%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Married</td>
-<td headers="stat_0" class="gt_row gt_center">2,643 (66%)</td>
-<td headers="stat_1" class="gt_row gt_center">2,285 (67%)</td>
-<td headers="stat_2" class="gt_row gt_center">358 (58%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Separated</td>
-<td headers="stat_0" class="gt_row gt_center">45 (1.1%)</td>
-<td headers="stat_1" class="gt_row gt_center">30 (0.9%)</td>
-<td headers="stat_2" class="gt_row gt_center">15 (2.4%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Divorced</td>
-<td headers="stat_0" class="gt_row gt_center">486 (12%)</td>
-<td headers="stat_1" class="gt_row gt_center">396 (12%)</td>
-<td headers="stat_2" class="gt_row gt_center">90 (15%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Widowed</td>
-<td headers="stat_0" class="gt_row gt_center">235 (5.8%)</td>
-<td headers="stat_1" class="gt_row gt_center">186 (5.5%)</td>
-<td headers="stat_2" class="gt_row gt_center">49 (8.0%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Stage (T)</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    T1</td>
-<td headers="stat_0" class="gt_row gt_center">1,603 (40%)</td>
-<td headers="stat_1" class="gt_row gt_center">1,446 (42%)</td>
-<td headers="stat_2" class="gt_row gt_center">157 (25%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    T2</td>
-<td headers="stat_0" class="gt_row gt_center">1,786 (44%)</td>
-<td headers="stat_1" class="gt_row gt_center">1,483 (44%)</td>
-<td headers="stat_2" class="gt_row gt_center">303 (49%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    T3</td>
-<td headers="stat_0" class="gt_row gt_center">533 (13%)</td>
-<td headers="stat_1" class="gt_row gt_center">417 (12%)</td>
-<td headers="stat_2" class="gt_row gt_center">116 (19%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    T4</td>
-<td headers="stat_0" class="gt_row gt_center">102 (2.5%)</td>
-<td headers="stat_1" class="gt_row gt_center">62 (1.8%)</td>
-<td headers="stat_2" class="gt_row gt_center">40 (6.5%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodal Stage (N)</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    N1</td>
-<td headers="stat_0" class="gt_row gt_center">2,732 (68%)</td>
-<td headers="stat_1" class="gt_row gt_center">2,462 (72%)</td>
-<td headers="stat_2" class="gt_row gt_center">270 (44%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    N2</td>
-<td headers="stat_0" class="gt_row gt_center">820 (20%)</td>
-<td headers="stat_1" class="gt_row gt_center">655 (19%)</td>
-<td headers="stat_2" class="gt_row gt_center">165 (27%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    N3</td>
-<td headers="stat_0" class="gt_row gt_center">472 (12%)</td>
-<td headers="stat_1" class="gt_row gt_center">291 (8.5%)</td>
-<td headers="stat_2" class="gt_row gt_center">181 (29%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Differentiation</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Well differentiated</td>
-<td headers="stat_0" class="gt_row gt_center">543 (13%)</td>
-<td headers="stat_1" class="gt_row gt_center">504 (15%)</td>
-<td headers="stat_2" class="gt_row gt_center">39 (6.3%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Moderately differentiated</td>
-<td headers="stat_0" class="gt_row gt_center">2,351 (58%)</td>
-<td headers="stat_1" class="gt_row gt_center">2,046 (60%)</td>
-<td headers="stat_2" class="gt_row gt_center">305 (50%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Poorly differentiated</td>
-<td headers="stat_0" class="gt_row gt_center">1,111 (28%)</td>
-<td headers="stat_1" class="gt_row gt_center">848 (25%)</td>
-<td headers="stat_2" class="gt_row gt_center">263 (43%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Undifferentiated</td>
-<td headers="stat_0" class="gt_row gt_center">19 (0.5%)</td>
-<td headers="stat_1" class="gt_row gt_center">10 (0.3%)</td>
-<td headers="stat_2" class="gt_row gt_center">9 (1.5%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Estrogen Receptor</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Positive</td>
-<td headers="stat_0" class="gt_row gt_center">3,755 (93%)</td>
-<td headers="stat_1" class="gt_row gt_center">3,247 (95%)</td>
-<td headers="stat_2" class="gt_row gt_center">508 (82%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Negative</td>
-<td headers="stat_0" class="gt_row gt_center">269 (6.7%)</td>
-<td headers="stat_1" class="gt_row gt_center">161 (4.7%)</td>
-<td headers="stat_2" class="gt_row gt_center">108 (18%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Progesterone Receptor</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Positive</td>
-<td headers="stat_0" class="gt_row gt_center">3,326 (83%)</td>
-<td headers="stat_1" class="gt_row gt_center">2,914 (86%)</td>
-<td headers="stat_2" class="gt_row gt_center">412 (67%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    Negative</td>
-<td headers="stat_0" class="gt_row gt_center">698 (17%)</td>
-<td headers="stat_1" class="gt_row gt_center">494 (14%)</td>
-<td headers="stat_2" class="gt_row gt_center">204 (33%)</td>
-<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Tumor Size (mm)</td>
-<td headers="stat_0" class="gt_row gt_center">30 (21)</td>
-<td headers="stat_1" class="gt_row gt_center">29 (20)</td>
-<td headers="stat_2" class="gt_row gt_center">37 (24)</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodes Examined</td>
-<td headers="stat_0" class="gt_row gt_center">14 (8)</td>
-<td headers="stat_1" class="gt_row gt_center">14 (8)</td>
-<td headers="stat_2" class="gt_row gt_center">15 (8)</td>
-<td headers="p.value" class="gt_row gt_center">0.067</td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Nodes Positive</td>
-<td headers="stat_0" class="gt_row gt_center">4.2 (5.1)</td>
-<td headers="stat_1" class="gt_row gt_center">3.6 (4.4)</td>
-<td headers="stat_2" class="gt_row gt_center">7.2 (7.3)</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Survival Time (months)</td>
-<td headers="stat_0" class="gt_row gt_center">71 (23)</td>
-<td headers="stat_1" class="gt_row gt_center">76 (19)</td>
-<td headers="stat_2" class="gt_row gt_center">46 (24)</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Age (years)</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">54 (9)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">54 (9)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">55 (10)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Race</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    White</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">3,413 (85%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,903 (85%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">510 (83%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Black</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">291 (7.2%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">218 (6.4%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">73 (12%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Other</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">320 (8.0%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">287 (8.4%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">33 (5.4%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Marital Status</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Single</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">615 (15%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">511 (15%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">104 (17%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Married</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,643 (66%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,285 (67%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">358 (58%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Separated</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">45 (1.1%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">30 (0.9%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">15 (2.4%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Divorced</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">486 (12%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">396 (12%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">90 (15%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Widowed</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">235 (5.8%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">186 (5.5%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">49 (8.0%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Tumor Stage (T)</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    T1</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">1,603 (40%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">1,446 (42%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">157 (25%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    T2</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">1,786 (44%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">1,483 (44%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">303 (49%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    T3</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">533 (13%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">417 (12%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">116 (19%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    T4</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">102 (2.5%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">62 (1.8%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">40 (6.5%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Nodal Stage (N)</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    N1</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,732 (68%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,462 (72%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">270 (44%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    N2</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">820 (20%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">655 (19%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">165 (27%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    N3</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">472 (12%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">291 (8.5%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">181 (29%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Tumor Differentiation</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Well differentiated</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">543 (13%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">504 (15%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">39 (6.3%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Moderately differentiated</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,351 (58%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,046 (60%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">305 (50%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Poorly differentiated</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">1,111 (28%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">848 (25%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">263 (43%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Undifferentiated</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">19 (0.5%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">10 (0.3%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">9 (1.5%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Estrogen Receptor</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Positive</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">3,755 (93%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">3,247 (95%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">508 (82%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Negative</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">269 (6.7%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">161 (4.7%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">108 (18%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Progesterone Receptor</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Positive</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">3,326 (83%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">2,914 (86%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">412 (67%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">    Negative</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">698 (17%)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">494 (14%)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">204 (33%)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Tumor Size (mm)</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">30 (21)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">29 (20)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">37 (24)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Nodes Examined</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">14 (8)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">14 (8)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">15 (8)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">0.067</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Nodes Positive</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">4.2 (5.1)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">3.6 (4.4)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">7.2 (7.3)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">Survival Time (months)</td>
+<td headers="stat_0" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">71 (23)</td>
+<td headers="stat_1" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">76 (19)</td>
+<td headers="stat_2" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;">46 (24)</td>
+<td headers="p.value" class="gt_row gt_left" style="border-left-width: 1px; border-left-style: solid; border-left-color: #d2c9a4; border-right-width: 1px; border-right-style: solid; border-right-color: #d2c9a4; border-top-width: 1px; border-top-style: solid; border-top-color: #d2c9a4; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #d2c9a4;"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -1220,9 +1249,9 @@ N = 616</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
   </tfoot>
 </table>
 </div>
-<div id="interpretation-of-descriptive-statistics"
-class="section level3">
-<h3>Interpretation of Descriptive Statistics</h3>
+<h4 class="casefile-subtitle">
+Interpretation of Descriptive Statistics
+</h4>
 <p>The descriptive analysis reveals significant baseline differences
 between survivors and non-survivors. The cohort is predominantly White
 (approximately 81%), with Black patients comprising about 16% and Other
@@ -1243,13 +1272,12 @@ in the deceased group compared to survivors, validating tumor size as a
 crude but effective proxy for disease progression.</p></li>
 </ul>
 <hr />
-</div>
-</div>
-</div>
-<div id="exploratory-analysis" class="section level1">
-<h1>Exploratory Analysis</h1>
-<div id="cohort-overview" class="section level2">
-<h2>Cohort Overview</h2>
+<h2 class="casefile-subtitle">
+Exploratory Analysis
+</h2>
+<h3 class="casefile-subtitle">
+Cohort Overview
+</h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Key statistics</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>total_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cancer)</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>deaths <span class="ot">&lt;-</span> <span class="fu">sum</span>(cancer<span class="sc">$</span>status <span class="sc">==</span> <span class="st">&quot;Dead&quot;</span>)</span>
@@ -1306,18 +1334,18 @@ crude but effective proxy for disease progression.</p></li>
 </tr>
 </tbody>
 </table>
-<div id="interpretation" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The overall fatality rate in this cohort is 15.3%. The median
 survival time of 73 months (approximately 6.1 years) indicates a
 relatively long follow-up period, suitable for survival analysis. This
 fatality rate is consistent with contemporary breast cancer statistics,
 reflecting improvements in treatment while acknowledging that breast
 cancer remains a significant cause of mortality.</p>
-</div>
-</div>
-<div id="age-distribution-by-outcome" class="section level2">
-<h2>Age Distribution by Outcome</h2>
+<h3 class="casefile-subtitle">
+Age Distribution by Outcome
+</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Age distribution</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>age_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cancer, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
@@ -1332,13 +1360,14 @@ cancer remains a significant cause of mortality.</p>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of Patients&quot;</span>,</span>
 <span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Outcome&quot;</span></span>
 <span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
 <span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a></span>
 <span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>age_plot</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/age_distribution-1.png" width="3000" style="display: block; margin: auto;" /></p>
-<div id="interpretation-1" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>Figure 1 approximates a normal distribution centered around 50-55
 years. Notably, the distribution of deceased patients (red) appears
 slightly right-shifted compared to survivors (blue), suggesting that
@@ -1347,10 +1376,9 @@ overlap between distributions, however, indicates that age alone is not
 a definitive predictor, motivating the need for multivariate modeling.
 The interquartile range of 47-61 years reflects the typical age range
 for breast cancer diagnosis.</p>
-</div>
-</div>
-<div id="racial-disparities-in-outcomes" class="section level2">
-<h2>Racial Disparities in Outcomes</h2>
+<h3 class="casefile-subtitle">
+Racial Disparities in Outcomes
+</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Racial breakdown</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>racial_summary <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span></span>
@@ -1408,12 +1436,13 @@ for breast cancer diagnosis.</p>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>,</span>
 <span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Fatality Rate (%)&quot;</span></span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
 <span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">30</span>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/racial_barplot-1.png" width="3000" style="display: block; margin: auto;" /></p>
-<div id="interpretation-2" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 Figure 2 and Table 2 highlight a striking racial disparity. Black
 patients have a fatality rate of **
 <div data-pagedtable="false">
@@ -1441,10 +1470,9 @@ triple-negative breast cancer)</li>
 <li><strong>Socioeconomic factors</strong> not captured in this
 dataset</li>
 </ul>
-</div>
-</div>
-<div id="tumor-stage-distribution" class="section level2">
-<h2>Tumor Stage Distribution</h2>
+<h3 class="casefile-subtitle">
+Tumor Stage Distribution
+</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Calculate fatality rates by stage for annotation</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>t_stage_rates <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">group_by</span>(t_stage) <span class="sc">%&gt;%</span></span>
@@ -1468,7 +1496,7 @@ dataset</li>
 <span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Deceased&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Figure 3A: Distribution by Tumor Stage (T)&quot;</span>, </span>
 <span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;T Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Status&quot;</span>) <span class="sc">+</span></span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a></span>
 <span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
@@ -1479,7 +1507,7 @@ dataset</li>
 <span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Deceased&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Figure 3B: Distribution by Nodal Stage (N)&quot;</span>, </span>
 <span id="cb12-34"><a href="#cb12-34" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;N Stage&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Status&quot;</span>) <span class="sc">+</span></span>
-<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb12-36"><a href="#cb12-36" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
 <span id="cb12-37"><a href="#cb12-37" tabindex="-1"></a></span>
 <span id="cb12-38"><a href="#cb12-38" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -1540,8 +1568,9 @@ dataset</li>
 </tr>
 </tbody>
 </table>
-<div id="interpretation-3" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>Figures 3A-B and Table 3 demonstrate a clear <strong>“dose-response”
 relationship</strong> between cancer stage and mortality:</p>
 <ul>
@@ -1555,24 +1584,31 @@ paramount for survival.</p></li>
 </ul>
 <p>This validates the biological basis of the TNM staging system and
 emphasizes the importance of screening programs for early detection.</p>
-</div>
-</div>
-<div id="correlation-analysis" class="section level2">
-<h2>Correlation Analysis</h2>
+<h3 class="casefile-subtitle">
+Correlation Analysis
+</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Correlation matrix for continuous variables</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> cancer <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">select</span>(age, tumor_size, regional_node_examined, regional_node_positive, survival_months, status_binary) <span class="sc">%&gt;%</span></span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">cor</span>()</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">number.cex =</span> <span class="fl">0.7</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Figure 4: Correlation Matrix of Continuous Variables&quot;</span>, </span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>         <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>))(<span class="dv">100</span>))</span></code></pre></div>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bg =</span> <span class="st">&quot;#EFEDE2&quot;</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  cor_matrix,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;color&quot;</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">number.cex =</span> <span class="fl">0.7</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>  <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>  <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Figure 4: Correlation Matrix of Continuous Variables&quot;</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>  <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>))(<span class="dv">100</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/correlation-1.png" width="3000" style="display: block; margin: auto;" /></p>
-<div id="interpretation-4" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The correlation matrix (Figure 4) reveals important
 relationships:</p>
 <ol style="list-style-type: decimal">
@@ -1594,17 +1630,17 @@ exceed |0.7|, suggesting multicollinearity will not substantially affect
 our regression models.</p></li>
 </ol>
 <hr />
-</div>
-</div>
-</div>
-<div id="additional-analysis" class="section level1">
-<h1>Additional Analysis</h1>
-<div id="kaplan-meier-survival-analysis" class="section level2">
-<h2>Kaplan-Meier Survival Analysis</h2>
+<h2 class="casefile-subtitle">
+Additional Analysis
+</h2>
+<h3 class="casefile-subtitle">
+Kaplan-Meier Survival Analysis
+</h3>
 <p>Kaplan-Meier analysis provides non-parametric estimates of survival
 probability over time, accounting for censored observations.</p>
-<div id="overall-survival" class="section level3">
-<h3>Overall Survival</h3>
+<h4 class="casefile-subtitle">
+Overall Survival
+</h4>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Overall KM curve</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>survfit_overall <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> cancer)</span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
@@ -1622,20 +1658,20 @@ probability over time, accounting for censored observations.</p>
 <span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Since Diagnosis (months)&quot;</span>,</span>
 <span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
 <span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;#2C3E50&quot;</span>,</span>
-<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>)</span>
 <span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/km_overall-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="interpretation-5" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>Figure 5 shows the overall survival trajectory for the cohort. The
 <strong>5-year survival rate is approximately 88.1%</strong>, reflecting
 the generally favorable prognosis for breast cancer with modern
 treatment. The survival curve shows a gradual decline over time, with
 the steepest drops occurring in the first 60 months after diagnosis.</p>
-</div>
-<div id="survival-by-race" class="section level3">
-<h3>Survival by Race</h3>
+<h4 class="casefile-subtitle">
+Survival by Race
+</h4>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># KM by race</span></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>survfit_race <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> race, <span class="at">data =</span> cancer)</span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>logrank_race <span class="ot">&lt;-</span> <span class="fu">survdiff</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> race, <span class="at">data =</span> cancer)</span>
@@ -1656,12 +1692,12 @@ the steepest drops occurring in the first 60 months after diagnosis.</p>
 <span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
 <span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>  <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>, <span class="st">&quot;#8E44AD&quot;</span>),</span>
 <span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>),</span>
-<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>)</span>
 <span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/km_race-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="interpretation-6" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The Kaplan-Meier curves (Figure 6) provide <strong>statistical
 validation of the racial disparities</strong> observed in the
 exploratory analysis:</p>
@@ -1684,9 +1720,9 @@ specific timepoint in the disease trajectory.</p></li>
 gap between White and Black patients represents a substantial disparity
 demanding intervention.</p></li>
 </ol>
-</div>
-<div id="survival-by-tumor-stage" class="section level3">
-<h3>Survival by Tumor Stage</h3>
+<h4 class="casefile-subtitle">
+Survival by Tumor Stage
+</h4>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># KM by T stage</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>survfit_tstage <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> t_stage, <span class="at">data =</span> cancer)</span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
@@ -1702,12 +1738,12 @@ demanding intervention.</p></li>
 <span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
 <span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>,</span>
 <span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>, <span class="st">&quot;T4&quot;</span>),</span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>)</span>
 <span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/km_tstage-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="interpretation-7" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>Figure 7 illustrates <strong>distinct risk stratification by tumor
 stage</strong> with several key findings:</p>
 <ol style="list-style-type: decimal">
@@ -1724,9 +1760,9 @@ provide strong evidence-based justification for screening
 mammography—detecting tumors at T1 rather than T4 could substantially
 improve survival outcomes.</p></li>
 </ol>
-</div>
-<div id="survival-by-nodal-stage" class="section level3">
-<h3>Survival by Nodal Stage</h3>
+<h4 class="casefile-subtitle">
+Survival by Nodal Stage
+</h4>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># KM by N stage</span></span>
 <span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>survfit_nstage <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> n_stage, <span class="at">data =</span> cancer)</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
@@ -1742,12 +1778,12 @@ improve survival outcomes.</p></li>
 <span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>,</span>
 <span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,</span>
 <span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a>  <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>, <span class="st">&quot;N3&quot;</span>),</span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>)</span>
 <span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/km_nstage-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="interpretation-8" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>Figure 8 demonstrates the <strong>critical prognostic importance of
 lymph node involvement</strong>:</p>
 <ol style="list-style-type: decimal">
@@ -1764,15 +1800,15 @@ aggressive adjuvant chemotherapy and radiation to address the higher
 recurrence risk.</p></li>
 </ol>
 <hr />
-</div>
-</div>
-<div id="cox-proportional-hazards-regression" class="section level2">
-<h2>Cox Proportional Hazards Regression</h2>
+<h3 class="casefile-subtitle">
+Cox Proportional Hazards Regression
+</h3>
 <p>Cox regression allows estimation of the <strong>independent
 effect</strong> of each predictor on survival, controlling for
 confounding.</p>
-<div id="proportional-hazards-assumption-test" class="section level3">
-<h3>Proportional Hazards Assumption Test</h3>
+<h4 class="casefile-subtitle">
+Proportional Hazards Assumption Test
+</h4>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Define formula for initial model</span></span>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>cox_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(</span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> </span>
@@ -1809,18 +1845,18 @@ confounding.</p>
 <pre><code>## 
 ## ⚠ Variables with PH violations (p &lt; 0.05): estrogen_status, progesterone_status, GLOBAL 
 ## Remedy: Stratification by violating variables.</code></pre>
-</div>
-<div id="interpretation-9" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The proportional hazards test reveals violations for
 <strong>estrogen_status and progesterone_status</strong> (p &lt; 0.05).
 This means the effect of hormone receptor status on survival changes
 over time—a biologically plausible finding since hormonal therapies have
 different efficacy profiles at different disease stages. We address this
 by stratifying the model by hormone receptor status.</p>
-</div>
-<div id="stratified-cox-model" class="section level3">
-<h3>Stratified Cox Model</h3>
+<h4 class="casefile-subtitle">
+Stratified Cox Model
+</h4>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Stratified model to address PH violations</span></span>
 <span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>cox_stratified <span class="ot">&lt;-</span> <span class="fu">coxph</span>(</span>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">Surv</span>(survival_months, status_binary) <span class="sc">~</span> </span>
@@ -1915,9 +1951,9 @@ by stratifying the model by hormone receptor status.</p>
 ## Likelihood ratio test= 340.9  on 18 df,   p=&lt;2e-16
 ## Wald test            = 363.7  on 18 df,   p=&lt;2e-16
 ## Score (logrank) test = 405.1  on 18 df,   p=&lt;2e-16</code></pre>
-</div>
-<div id="forest-plot-of-hazard-ratios" class="section level3">
-<h3>Forest Plot of Hazard Ratios</h3>
+<h4 class="casefile-subtitle">
+Forest Plot of Hazard Ratios
+</h4>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Tidy results</span></span>
 <span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>cox_tidy <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(cox_stratified, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -1958,7 +1994,7 @@ by stratifying the model by hormone receptor status.</p>
 <span id="cb29-38"><a href="#cb29-38" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
 <span id="cb29-39"><a href="#cb29-39" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Significance&quot;</span></span>
 <span id="cb29-40"><a href="#cb29-40" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-41"><a href="#cb29-41" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-41"><a href="#cb29-41" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb29-42"><a href="#cb29-42" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/cox_forest-1.png" width="3000" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># Significant results table</span></span>
@@ -2044,9 +2080,9 @@ by stratifying the model by hormone receptor status.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="interpretation-10" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The Cox regression (Figure 9 and Table 4) identifies independent
 predictors of mortality after adjustment:</p>
 <p><strong>Significant Risk Factors (HR &gt; 1):</strong></p>
@@ -2077,9 +2113,9 @@ and more complete treatment.</p></li>
 hazard than single patients, consistent with literature on social
 support and cancer outcomes.</p></li>
 </ol>
-</div>
-<div id="model-performance" class="section level3">
-<h3>Model Performance</h3>
+<h4 class="casefile-subtitle">
+Model Performance
+</h4>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Concordance index</span></span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>concordance <span class="ot">&lt;-</span> cox_stratified<span class="sc">$</span>concordance[<span class="dv">1</span>]</span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a></span>
@@ -2092,14 +2128,14 @@ support and cancer outcomes.</p></li>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;(0.5 = random, 0.7-0.8 = acceptable, &gt;0.8 = excellent)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## (0.5 = random, 0.7-0.8 = acceptable, &gt;0.8 = excellent)</code></pre>
 <hr />
-</div>
-</div>
-<div id="logistic-regression-fairness-analysis" class="section level2">
-<h2>Logistic Regression &amp; Fairness Analysis</h2>
+<h3 class="casefile-subtitle">
+Logistic Regression &amp; Fairness Analysis
+</h3>
 <p>We utilized logistic regression to predict binary mortality status
 and assessed the model’s fairness across racial groups.</p>
-<div id="model-fitting-and-performance" class="section level3">
-<h3>Model Fitting and Performance</h3>
+<h4 class="casefile-subtitle">
+Model Fitting and Performance
+</h4>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Train/Test Split</span></span>
 <span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>train_idx <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(cancer<span class="sc">$</span>status_binary, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
@@ -2137,9 +2173,9 @@ and assessed the model’s fairness across racial groups.</p>
 <pre><code>## • Accuracy: 0.854</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;• AUC-ROC:&quot;</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(auc_val), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## • AUC-ROC: 0.777</code></pre>
-</div>
-<div id="roc-curve" class="section level3">
-<h3>ROC Curve</h3>
+<h4 class="casefile-subtitle">
+ROC Curve
+</h4>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">ggroc</span>(roc_obj, <span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
 <span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">1</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
 <span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">0.3</span>, <span class="at">y =</span> <span class="fl">0.3</span>, </span>
@@ -2151,11 +2187,11 @@ and assessed the model’s fairness across racial groups.</p>
 <span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Specificity&quot;</span>,</span>
 <span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sensitivity&quot;</span></span>
 <span id="cb51-11"><a href="#cb51-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/roc_curve-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="fairness-audit" class="section level3">
-<h3>Fairness Audit</h3>
+<h4 class="casefile-subtitle">
+Fairness Audit
+</h4>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># Fairness Audit by Race</span></span>
 <span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>fairness <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span></span>
 <span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span></span>
@@ -2216,12 +2252,12 @@ Race)</caption>
 <span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>,</span>
 <span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;AUC&quot;</span></span>
 <span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">paper =</span><span class="st">&quot;#EFEDE2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb53-14"><a href="#cb53-14" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="crime_report_files/figure-html/fairness_plot-1.png" width="3000" style="display: block; margin: auto;" /></p>
-</div>
-<div id="interpretation-11" class="section level3">
-<h3>Interpretation</h3>
+<h4 class="casefile-subtitle">
+Interpretation
+</h4>
 <p>The fairness audit (Table 5 and Figure 11) indicates that our
 predictive model achieves <strong>algorithmic parity</strong>:</p>
 <ol style="list-style-type: decimal">
@@ -2241,25 +2277,29 @@ model can be deployed equitably without exacerbating existing
 disparities through differential prediction quality.</p></li>
 </ol>
 <hr />
-</div>
-</div>
-</div>
-<div id="discussion" class="section level1">
-<h1>Discussion</h1>
-<div id="summary-of-key-findings" class="section level2">
-<h2>Summary of Key Findings</h2>
+<h2 class="casefile-subtitle">
+Discussion
+</h2>
+<h3 class="casefile-subtitle">
+Summary of Key Findings
+</h3>
 <p>This forensic analysis of 4,024 breast cancer patients reveals
 consistent patterns that indict both biological aggression and
 structural inequities:</p>
-<div id="the-guilty-parties-risk-factors" class="section level3">
-<h3>1. The “Guilty” Parties (Risk Factors)</h3>
+<h4 class="casefile-subtitle">
+<ol style="list-style-type: decimal">
+<li>The “Guilty” Parties (Risk Factors)
+</h4></li>
+</ol>
 <p>Advanced Tumor (T) and Nodal (N) stages are the most potent
 predictors of mortality. Specifically, the transition from N1 to N3
 represents a catastrophic shift in prognosis. The Cox model C-statistic
 of 7.62041^{5} indicates good discriminatory ability.</p>
-</div>
-<div id="the-racial-gap" class="section level3">
-<h3>2. The Racial Gap</h3>
+<h4 class="casefile-subtitle">
+<ol start="2" style="list-style-type: decimal">
+<li>The Racial Gap
+</h4></li>
+</ol>
 Black patients face significantly higher mortality (
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -2277,17 +2317,18 @@ shows this risk persists even when adjusting for tumor stage and
 biology.</strong> This implies that “catching it early” is necessary but
 insufficient to close the gap; disparities in treatment access, quality
 of care, or specific tumor subtypes likely play additional roles.</p>
-</div>
-<div id="algorithmic-insight" class="section level3">
-<h3>3. Algorithmic Insight</h3>
+<h4 class="casefile-subtitle">
+<ol start="3" style="list-style-type: decimal">
+<li>Algorithmic Insight
+</h4></li>
+</ol>
 <p>Our logistic regression model demonstrates good predictive power (AUC
 = 0.78) and <strong>algorithmic fairness</strong> (comparable AUC across
 racial groups). The disparity is not an artifact of the model, but a
 reflection of the reality captured in the data.</p>
-</div>
-</div>
-<div id="limitations" class="section level2">
-<h2>Limitations</h2>
+<h3 class="casefile-subtitle">
+Limitations
+</h3>
 <ul>
 <li><p><strong>Missing Variables:</strong> The dataset lacks detailed
 treatment information (chemotherapy/radiation regimens), HER2 status,
@@ -2303,10 +2344,9 @@ and immunotherapies.</p></li>
 on independent, contemporary cohorts before clinical
 deployment.</p></li>
 </ul>
-</div>
-<div id="conclusion" class="section level2">
-<h2>Conclusion</h2>
-<div class="casefile-wrapper">
+<h3 class="casefile-subtitle">
+Conclusion
+</h3>
 <div class="blood-stamp">
 VERDICT
 </div>
@@ -2347,10 +2387,7 @@ Research into the structural factors underlying persistent disparities
 <p class="casefile-lede">
 <strong>The prosecution rests.</strong>
 </p>
-</div>
 <hr />
-</div>
-</div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <ol style="list-style-type: decimal">
@@ -2396,11 +2433,11 @@ algorithm used to manage the health of populations. <em>Science</em>,
 ## 
 ## other attached packages:
 ##  [1] gridExtra_2.3   corrplot_0.95   rsample_1.3.1   knitr_1.50     
-##  [5] broom_1.0.9     gtsummary_2.2.0 pROC_1.19.0.1   caret_7.0-1    
-##  [9] lattice_0.22-7  survminer_0.5.1 ggpubr_0.6.2    survival_3.8-3 
-## [13] janitor_2.2.1   lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  
-## [17] dplyr_1.1.4     purrr_1.0.4     readr_2.1.5     tidyr_1.3.1    
-## [21] tibble_3.3.0    ggplot2_4.0.1   tidyverse_2.0.0
+##  [5] broom_1.0.9     gt_1.0.0        gtsummary_2.2.0 pROC_1.19.0.1  
+##  [9] caret_7.0-1     lattice_0.22-7  survminer_0.5.1 ggpubr_0.6.2   
+## [13] survival_3.8-3  janitor_2.2.1   lubridate_1.9.4 forcats_1.0.0  
+## [17] stringr_1.5.1   dplyr_1.1.4     purrr_1.0.4     readr_2.1.5    
+## [21] tidyr_1.3.1     tibble_3.3.0    ggplot2_4.0.1   tidyverse_2.0.0
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] rlang_1.1.6          magrittr_2.0.3       snakecase_0.11.1    
@@ -2430,11 +2467,11 @@ algorithm used to manage the health of populations. <em>Science</em>,
 ## [73] ggsignif_0.6.4       grid_4.5.1           cards_0.7.0         
 ## [76] ipred_0.9-15         nlme_3.1-168         cardx_0.3.0         
 ## [79] Formula_1.2-5        cli_3.6.5            km.ci_0.5-6         
-## [82] gt_1.0.0             lava_1.8.2           gtable_0.3.6        
-## [85] rstatix_0.7.3        sass_0.4.10          digest_0.6.37       
-## [88] farver_2.1.2         htmltools_0.5.8.1    lifecycle_1.0.4     
-## [91] hardhat_1.4.2        gridtext_0.1.5       bit64_4.6.0-1       
-## [94] MASS_7.3-65</code></pre>
+## [82] lava_1.8.2           gtable_0.3.6         rstatix_0.7.3       
+## [85] sass_0.4.10          digest_0.6.37        farver_2.1.2        
+## [88] htmltools_0.5.8.1    lifecycle_1.0.4      hardhat_1.4.2       
+## [91] gridtext_0.1.5       bit64_4.6.0-1        MASS_7.3-65</code></pre>
+</div>
 </div>
 </div>
 

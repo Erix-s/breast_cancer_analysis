@@ -77,8 +77,8 @@ The histogram of survival time shows a right-skewed distribution: many victims l
 km_ggplot$plot <- km_ggplot$plot +
   coord_cartesian(ylim = c(0.6, 1)) +      # adjust zoom here
   theme(
-    panel.background = element_rect(fill = "#faf7e8", color = NA),
-    plot.background  = element_rect(fill = "#faf7e8", color = NA),
+    panel.background = element_rect(fill = "#EFEDE2", color = NA),
+    plot.background  = element_rect(fill = "#EFEDE2", color = NA),
     panel.grid       = element_line(color = "grey85")
   )
 
@@ -154,7 +154,7 @@ p_cox_forest <- cox_results %>%
     x = "Covariates",
     y = "Hazard Ratio (HR)"
   ) +
-  theme_minimal(paper ="#faf7e8")
+  theme_minimal(paper ="#EFEDE2")
 
 p_cox_forest
 ```

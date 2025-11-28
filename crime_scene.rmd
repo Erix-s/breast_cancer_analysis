@@ -61,7 +61,7 @@ cancer %>%
   labs(title = "Age Distribution of Affected Victim",
        x = "Age",
        y = "Count") +
-  theme_minimal()
+  theme_minimal(paper ="#EFEDE2")
 ```
 
 Our defendant likes to effect people of various ages, but it seems to have a preference for `r quantile(cancer$age, 0.25)` to `r quantile(cancer$age, 0.75)` years old.
@@ -76,7 +76,7 @@ p_surv_hist <- cancer %>%
     x = "Months",
     y = "Frequency"
   ) +
-  theme_minimal() 
+  theme_minimal(paper ="#EFEDE2") 
 
 p_surv_hist
 ```
@@ -98,7 +98,7 @@ cancer %>%
     y = "Number of Patients"
   ) +
   scale_fill_brewer(palette = "Reds") +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position="none")
 
 cancer %>%
@@ -111,7 +111,7 @@ cancer %>%
     y = "Number of Patients"
   ) +
   scale_fill_brewer(palette = "Reds") +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position="none")
 
 ```
@@ -129,7 +129,7 @@ cancer %>%
     x = "Stage at Diagnosis",
     y = "Survival (Months)") +
   scale_fill_brewer(palette = "Purples") +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position="none")
 
 ```
@@ -147,7 +147,7 @@ cancer %>%
     x = "Estrogen Receptor Status",
     y = "Survival (Months)") +
   scale_fill_brewer(palette = "Greens") +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position="none")
 
 cancer %>%
@@ -158,7 +158,7 @@ cancer %>%
     x = "Progesterone Receptor Status",
     y = "Survival (Months)") +
   scale_fill_brewer(palette = "Oranges") +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position="none")
 
 ```

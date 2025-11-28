@@ -5,19 +5,22 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: true
+      toc_depth: 3
     theme: flatly
     highlight: tango
     df_print: paged
     css: style2.css
 ---
-
 <div class="casefile-wrapper">
 
   <div class="blood-stamp">CONFIDENTIAL CASE FILE</div>
-  
+
   <a href="index.html" class="casefile-button">📁 Return to the Front</a>
 
   <h1 class="casefile-title">Crime Report</h1>
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE, 
@@ -37,6 +40,8 @@ library(survminer)
 library(caret)
 library(pROC)
 library(gtsummary)
+library(gt)
+library(dplyr)
 library(broom)
 library(knitr)
 library(rsample)
@@ -47,7 +52,7 @@ library(gridExtra)
 
 ---
 
-# Motivation
+<h2 class="casefile-subtitle"> Motivation </h2>
 
 Breast cancer remains one of the most prevalent cancers worldwide, accounting for a substantial proportion of cancer incidence and health burden among women. Despite significant advances in early detection and treatment modalities, **disparities in survival outcomes persist across demographic and biological groups**. These disparities raise critical questions about equity in healthcare delivery and the factors that drive differential prognosis.
 
@@ -69,7 +74,7 @@ This project takes a creative "prosecution" approach—treating breast cancer as
 
 ---
 
-# Related Work
+<h2 class="casefile-subtitle"> Related Work </h2>
 
 Our analysis draws on established methodological frameworks and prior research in breast cancer epidemiology:
 
@@ -91,7 +96,7 @@ This project uses the **SEER (Surveillance, Epidemiology, and End Results) Breas
 
 ---
 
-# Initial Questions
+<h2 class="casefile-subtitle"> Initial Questions </h2>
 
 Our investigation began with the following primary questions:
 
@@ -107,7 +112,7 @@ Our investigation began with the following primary questions:
    - How well can Cox regression and logistic regression discriminate survivors from non-survivors?
    - Are these models robust under cross-validation and bootstrap resampling?
 
-## Evolution of Questions
+<h3 class="casefile-subtitle"> Evolution of Questions </h3> 
 
 As our analysis progressed, new questions emerged:
 
@@ -121,9 +126,9 @@ As our analysis progressed, new questions emerged:
 
 ---
 
-# Data
+<h2 class="casefile-subtitle"> Data </h2> 
 
-## Data Source and Description
+<h3 class="casefile-subtitle"> Data Source and Description </h3> 
 
 ```{r load_data}
 # Load and inspect the raw data
@@ -135,7 +140,7 @@ cat("Dataset Dimensions:", nrow(cancer_raw), "observations x", ncol(cancer_raw),
 
 The dataset contains **`r nrow(cancer_raw)` breast cancer patients** from the SEER registry. Key variables include Age, Race, Marital Status, TNM Stage (T-Stage, N-Stage), Tumor Differentiation, Estrogen/Progesterone Status, Survival Months, and Vital Status.
 
-## Data Cleaning and Preprocessing
+<h3 class="casefile-subtitle"> Data Cleaning and Preprocessing </h3> 
 
 ```{r data_cleaning}
 # Clean and prepare data
@@ -177,14 +182,17 @@ if(sum(missing_summary) == 0) {
 
 Categorical variables were converted to factors with clinically meaningful level ordering (e.g., T1 < T2 < T3 < T4) to ensure proper interpretation in regression models. The `grade` variable was removed due to multicollinearity with `differentiate`. A binary outcome variable was created for logistic regression.
 
-## Descriptive Statistics
+<h3 class="casefile-subtitle"> Descriptive Statistics </h3> 
 
 ```{r descriptive_stats}
 # Overall summary statistics
 desc_table <- cancer %>%
-  select(age, race, marital_status, t_stage, n_stage, differentiate,
-         estrogen_status, progesterone_status, tumor_size,
-         regional_node_examined, regional_node_positive, survival_months, status) %>%
+  select(
+    age, race, marital_status, t_stage, n_stage, differentiate,
+    estrogen_status, progesterone_status, tumor_size,
+    regional_node_examined, regional_node_positive,
+    survival_months, status
+  ) %>%
   tbl_summary(
     by = status,
     missing = "no",
@@ -211,10 +219,34 @@ desc_table <- cancer %>%
   add_p() %>%
   bold_labels()
 
-desc_table
+desc_table %>%
+  as_gt() %>%
+  tab_options(
+    table.background.color = "#EFEDE2",
+    heading.background.color = "#EFEDE2",
+    column_labels.background.color = "#EFEDE2",
+    table.border.top.color = "#d2c9a4",
+    table.border.bottom.color = "#d2c9a4",
+    column_labels.border.top.color = "#d2c9a4",
+    column_labels.border.bottom.color = "#d2c9a4",
+    data_row.padding = px(6),
+    table.font.names = "Courier New"
+  ) %>%
+  cols_align(
+    align = "left",
+    columns = everything()
+  ) %>%
+  tab_style(
+    style = cell_borders(color = "#d2c9a4", sides = "all"),
+    locations = cells_body()
+  ) %>%
+  tab_style(
+    style = cell_borders(color = "#d2c9a4", sides = "all"),
+    locations = cells_column_labels()
+  )
 ```
 
-### Interpretation of Descriptive Statistics
+<h4 class="casefile-subtitle"> Interpretation of Descriptive Statistics </h4> 
 
 The descriptive analysis reveals significant baseline differences between survivors and non-survivors. The cohort is predominantly White (approximately 81%), with Black patients comprising about 16% and Other races about 3%.
 
@@ -228,9 +260,9 @@ The descriptive analysis reveals significant baseline differences between surviv
 
 ---
 
-# Exploratory Analysis
+<h2 class="casefile-subtitle"> Exploratory Analysis </h2> 
 
-## Cohort Overview
+<h3 class="casefile-subtitle"> Cohort Overview </h3> 
 
 ```{r cohort_overview}
 # Key statistics
@@ -256,11 +288,11 @@ cohort_summary <- tibble(
 kable(cohort_summary, caption = "Table 1: Cohort Summary Statistics")
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The overall fatality rate in this cohort is `r fatality_rate`%. The median survival time of `r median_survival` months (approximately `r round(median_survival/12, 1)` years) indicates a relatively long follow-up period, suitable for survival analysis. This fatality rate is consistent with contemporary breast cancer statistics, reflecting improvements in treatment while acknowledging that breast cancer remains a significant cause of mortality.
 
-## Age Distribution by Outcome
+<h3 class="casefile-subtitle"> Age Distribution by Outcome </h3> 
 
 ```{r age_distribution, fig.height=5}
 # Age distribution
@@ -277,17 +309,17 @@ age_plot <- ggplot(cancer, aes(x = age, fill = status)) +
     y = "Number of Patients",
     fill = "Outcome"
   ) +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position = "bottom")
 
 age_plot
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figure 1 approximates a normal distribution centered around 50-55 years. Notably, the distribution of deceased patients (red) appears slightly right-shifted compared to survivors (blue), suggesting that **advanced age is associated with higher mortality**. The overlap between distributions, however, indicates that age alone is not a definitive predictor, motivating the need for multivariate modeling. The interquartile range of `r age_iqr[1]`-`r age_iqr[2]` years reflects the typical age range for breast cancer diagnosis.
 
-## Racial Disparities in Outcomes
+<h3 class="casefile-subtitle"> Racial Disparities in Outcomes </h3> 
 
 ```{r racial_disparities}
 # Racial breakdown
@@ -315,12 +347,12 @@ ggplot(racial_summary, aes(x = race, y = `Fatality Rate (%)`, fill = race)) +
     x = "Race",
     y = "Fatality Rate (%)"
   ) +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position = "none") +
   ylim(0, 30)
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figure 2 and Table 2 highlight a striking racial disparity. Black patients have a fatality rate of **`r racial_summary[racial_summary$race == "Black", "Fatality Rate (%)"]`%**, which is approximately **1.7 times higher** than that of White patients (`r racial_summary[racial_summary$race == "White", "Fatality Rate (%)"]`%). 
 
@@ -331,7 +363,7 @@ This disparity aligns with national SEER data trends and suggests systemic issue
 - **Disparities in treatment access and quality**
 - **Socioeconomic factors** not captured in this dataset
 
-## Tumor Stage Distribution
+<h3 class="casefile-subtitle"> Tumor Stage Distribution </h3> 
 
 ```{r stage_distribution, fig.height=5}
 # Calculate fatality rates by stage for annotation
@@ -357,7 +389,7 @@ p1 <- cancer %>%
                    labels = c("Survived", "Deceased")) +
   labs(title = "Figure 3A: Distribution by Tumor Stage (T)", 
        x = "T Stage", y = "Count", fill = "Status") +
-  theme_minimal() + 
+  theme_minimal(paper ="#EFEDE2") + 
   theme(legend.position = "none")
 
 p2 <- cancer %>%
@@ -368,7 +400,7 @@ p2 <- cancer %>%
                     labels = c("Survived", "Deceased")) +
   labs(title = "Figure 3B: Distribution by Nodal Stage (N)", 
        x = "N Stage", y = "Count", fill = "Status") +
-  theme_minimal() + 
+  theme_minimal(paper ="#EFEDE2") + 
   theme(legend.position = "bottom")
 
 grid.arrange(p1, p2, ncol = 2)
@@ -386,7 +418,7 @@ stage_fatality <- bind_rows(
 kable(stage_fatality, caption = "Table 3: Fatality Rate by Cancer Stage")
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figures 3A-B and Table 3 demonstrate a clear **"dose-response" relationship** between cancer stage and mortality:
 
@@ -396,23 +428,30 @@ Figures 3A-B and Table 3 demonstrate a clear **"dose-response" relationship** be
 
 This validates the biological basis of the TNM staging system and emphasizes the importance of screening programs for early detection.
 
-## Correlation Analysis
+<h3 class="casefile-subtitle"> Correlation Analysis </h3> 
 
 ```{r correlation, fig.height=6}
 # Correlation matrix for continuous variables
 cor_matrix <- cancer %>%
   select(age, tumor_size, regional_node_examined, regional_node_positive, survival_months, status_binary) %>%
   cor()
+par(bg = "#EFEDE2")
 
-corrplot(cor_matrix, method = "color", type = "upper", 
-         addCoef.col = "black", number.cex = 0.7,
-         tl.col = "black", tl.srt = 45,
-         title = "Figure 4: Correlation Matrix of Continuous Variables", 
-         mar = c(0, 0, 2, 0),
-         col = colorRampPalette(c("#E74C3C", "white", "#2E9FDF"))(100))
+corrplot(
+  cor_matrix,
+  method = "color",
+  type = "upper",
+  addCoef.col = "black",
+  number.cex = 0.7,
+  tl.col = "black",
+  tl.srt = 45,
+  title = "Figure 4: Correlation Matrix of Continuous Variables",
+  mar = c(0, 0, 2, 0),
+  col = colorRampPalette(c("#E74C3C", "white", "#2E9FDF"))(100)
+)
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The correlation matrix (Figure 4) reveals important relationships:
 
@@ -426,13 +465,13 @@ The correlation matrix (Figure 4) reveals important relationships:
 
 ---
 
-# Additional Analysis
+<h2 class="casefile-subtitle"> Additional Analysis </h2> 
 
-## Kaplan-Meier Survival Analysis
+<h3 class="casefile-subtitle"> Kaplan-Meier Survival Analysis </h3> 
 
 Kaplan-Meier analysis provides non-parametric estimates of survival probability over time, accounting for censored observations.
 
-### Overall Survival
+<h4 class="casefile-subtitle"> Overall Survival </h4> 
 
 ```{r km_overall, fig.height=7}
 # Overall KM curve
@@ -452,15 +491,15 @@ ggsurvplot(
   xlab = "Time Since Diagnosis (months)",
   ylab = "Survival Probability",
   palette = "#2C3E50",
-  ggtheme = theme_minimal()
+  ggtheme = theme_minimal(paper ="#EFEDE2")
 )
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figure 5 shows the overall survival trajectory for the cohort. The **5-year survival rate is approximately `r round(surv_5yr * 100, 1)`%**, reflecting the generally favorable prognosis for breast cancer with modern treatment. The survival curve shows a gradual decline over time, with the steepest drops occurring in the first 60 months after diagnosis.
 
-### Survival by Race
+<h4 class="casefile-subtitle"> Survival by Race </h4> 
 
 ```{r km_race, fig.height=8}
 # KM by race
@@ -483,11 +522,11 @@ ggsurvplot(
   ylab = "Survival Probability",
   palette = c("#E7B800", "#2E9FDF", "#8E44AD"),
   legend.labs = c("White", "Black", "Other"),
-  ggtheme = theme_minimal()
+  ggtheme = theme_minimal(paper ="#EFEDE2")
 )
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The Kaplan-Meier curves (Figure 6) provide **statistical validation of the racial disparities** observed in the exploratory analysis:
 
@@ -502,7 +541,7 @@ The Kaplan-Meier curves (Figure 6) provide **statistical validation of the racia
 
 4. **Clinical Implications:** The `r round((surv_5yr_race$surv[1] - surv_5yr_race$surv[2]) * 100, 1)` percentage point gap between White and Black patients represents a substantial disparity demanding intervention.
 
-### Survival by Tumor Stage
+<h4 class="casefile-subtitle"> Survival by Tumor Stage </h4> 
 
 ```{r km_tstage, fig.height=8}
 # KM by T stage
@@ -520,11 +559,11 @@ ggsurvplot(
   ylab = "Survival Probability",
   palette = "Set1",
   legend.labs = c("T1", "T2", "T3", "T4"),
-  ggtheme = theme_minimal()
+  ggtheme = theme_minimal(paper ="#EFEDE2")
 )
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figure 7 illustrates **distinct risk stratification by tumor stage** with several key findings:
 
@@ -534,7 +573,7 @@ Figure 7 illustrates **distinct risk stratification by tumor stage** with severa
 
 3. **Early Detection Imperative:** These results provide strong evidence-based justification for screening mammography—detecting tumors at T1 rather than T4 could substantially improve survival outcomes.
 
-### Survival by Nodal Stage
+<h4 class="casefile-subtitle"> Survival by Nodal Stage </h4> 
 
 ```{r km_nstage, fig.height=8}
 # KM by N stage
@@ -552,11 +591,11 @@ ggsurvplot(
   ylab = "Survival Probability",
   palette = "Dark2",
   legend.labs = c("N1", "N2", "N3"),
-  ggtheme = theme_minimal()
+  ggtheme = theme_minimal(paper ="#EFEDE2")
 )
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 Figure 8 demonstrates the **critical prognostic importance of lymph node involvement**:
 
@@ -568,11 +607,11 @@ Figure 8 demonstrates the **critical prognostic importance of lymph node involve
 
 ---
 
-## Cox Proportional Hazards Regression
+<h3 class="casefile-subtitle"> Cox Proportional Hazards Regression </h3> 
 
 Cox regression allows estimation of the **independent effect** of each predictor on survival, controlling for confounding.
 
-### Proportional Hazards Assumption Test
+<h4 class="casefile-subtitle"> Proportional Hazards Assumption Test </h4> 
 
 ```{r ph_test}
 # Define formula for initial model
@@ -598,11 +637,11 @@ if(length(violations) > 0) {
 }
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The proportional hazards test reveals violations for **estrogen_status and progesterone_status** (p < 0.05). This means the effect of hormone receptor status on survival changes over time—a biologically plausible finding since hormonal therapies have different efficacy profiles at different disease stages. We address this by stratifying the model by hormone receptor status.
 
-### Stratified Cox Model
+<h4 class="casefile-subtitle"> Stratified Cox Model </h4> 
 
 ```{r cox_stratified}
 # Stratified model to address PH violations
@@ -627,7 +666,7 @@ if(global_p > 0.05) {
 summary(cox_stratified)
 ```
 
-### Forest Plot of Hazard Ratios
+<h4 class="casefile-subtitle"> Forest Plot of Hazard Ratios </h4>
 
 ```{r cox_forest, fig.height=10}
 # Tidy results
@@ -670,7 +709,7 @@ ggplot(cox_tidy, aes(x = estimate, y = reorder(term_clean, estimate))) +
     y = "",
     color = "Significance"
   ) +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position = "bottom")
 ```
 
@@ -688,7 +727,7 @@ sig_results <- cox_tidy %>%
 kable(sig_results, caption = "Table 4: Significant Predictors from Cox Model")
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The Cox regression (Figure 9 and Table 4) identifies independent predictors of mortality after adjustment:
 
@@ -708,7 +747,7 @@ The Cox regression (Figure 9 and Table 4) identifies independent predictors of m
 
 2. **Married Status:** Married patients show lower hazard than single patients, consistent with literature on social support and cancer outcomes.
 
-### Model Performance
+<h4 class="casefile-subtitle"> Model Performance </h4>
 
 ```{r cox_performance}
 # Concordance index
@@ -722,11 +761,11 @@ cat("(0.5 = random, 0.7-0.8 = acceptable, >0.8 = excellent)\n")
 
 ---
 
-## Logistic Regression & Fairness Analysis
+<h3 class="casefile-subtitle"> Logistic Regression & Fairness Analysis </h3> 
 
 We utilized logistic regression to predict binary mortality status and assessed the model's fairness across racial groups.
 
-### Model Fitting and Performance
+<h4 class="casefile-subtitle"> Model Fitting and Performance </h4> 
 
 ```{r logistic_model}
 # Train/Test Split
@@ -762,7 +801,7 @@ cat("• Accuracy:", round(accuracy, 3), "\n")
 cat("• AUC-ROC:", round(as.numeric(auc_val), 3), "\n")
 ```
 
-### ROC Curve
+<h4 class="casefile-subtitle"> ROC Curve </h4> 
 
 ```{r roc_curve, fig.height=6}
 ggroc(roc_obj, color = "#E74C3C", size = 1.2) +
@@ -776,10 +815,10 @@ ggroc(roc_obj, color = "#E74C3C", size = 1.2) +
     x = "Specificity",
     y = "Sensitivity"
   ) +
-  theme_minimal()
+  theme_minimal(paper ="#EFEDE2")
 ```
 
-### Fairness Audit
+<h4 class="casefile-subtitle"> Fairness Audit </h4> 
 
 ```{r fairness}
 # Fairness Audit by Race
@@ -809,11 +848,11 @@ ggplot(fairness, aes(x = race, y = AUC, fill = race)) +
     x = "Race",
     y = "AUC"
   ) +
-  theme_minimal() +
+  theme_minimal(paper ="#EFEDE2") +
   theme(legend.position = "none")
 ```
 
-### Interpretation
+<h4 class="casefile-subtitle"> Interpretation </h4> 
 
 The fairness audit (Table 5 and Figure 11) indicates that our predictive model achieves **algorithmic parity**:
 
@@ -827,25 +866,25 @@ The fairness audit (Table 5 and Figure 11) indicates that our predictive model a
 
 ---
 
-# Discussion
+<h2 class="casefile-subtitle"> Discussion </h2> 
 
-## Summary of Key Findings
+<h3 class="casefile-subtitle"> Summary of Key Findings </h3> 
 
 This forensic analysis of `r format(total_n, big.mark = ",")` breast cancer patients reveals consistent patterns that indict both biological aggression and structural inequities:
 
-### 1. The "Guilty" Parties (Risk Factors)
+<h4 class="casefile-subtitle"> 1. The "Guilty" Parties (Risk Factors) </h4> 
 
 Advanced Tumor (T) and Nodal (N) stages are the most potent predictors of mortality. Specifically, the transition from N1 to N3 represents a catastrophic shift in prognosis. The Cox model C-statistic of `r round(concordance, 2)` indicates good discriminatory ability.
 
-### 2. The Racial Gap
+<h4 class="casefile-subtitle"> 2. The Racial Gap </h4> 
 
 Black patients face significantly higher mortality (`r racial_summary[racial_summary$race == "Black", "Fatality Rate (%)"]`% vs `r racial_summary[racial_summary$race == "White", "Fatality Rate (%)"]`%) and worse survival trajectories. **Crucially, the Cox model shows this risk persists even when adjusting for tumor stage and biology.** This implies that "catching it early" is necessary but insufficient to close the gap; disparities in treatment access, quality of care, or specific tumor subtypes likely play additional roles.
 
-### 3. Algorithmic Insight
+<h4 class="casefile-subtitle"> 3. Algorithmic Insight </h4> 
 
 Our logistic regression model demonstrates good predictive power (AUC = `r round(as.numeric(auc_val), 2)`) and **algorithmic fairness** (comparable AUC across racial groups). The disparity is not an artifact of the model, but a reflection of the reality captured in the data.
 
-## Limitations
+<h3 class="casefile-subtitle"> Limitations </h3> 
 
 - **Missing Variables:** The dataset lacks detailed treatment information (chemotherapy/radiation regimens), HER2 status, and socioeconomic variables (income, insurance), which are known drivers of disparities.
 
@@ -855,9 +894,7 @@ Our logistic regression model demonstrates good predictive power (AUC = `r round
 
 - **External Validation:** Models require validation on independent, contemporary cohorts before clinical deployment.
 
-## Conclusion
-
-<div class="casefile-wrapper">
+<h3 class="casefile-subtitle"> Conclusion </h3> 
 
 <div class="blood-stamp">VERDICT</div>
 
@@ -890,9 +927,6 @@ Based on this comprehensive forensic analysis, we find <strong>Breast Cancer</st
 <p class="casefile-lede">
 <strong>The prosecution rests.</strong>
 </p>
-
-</div>
-
 ---
 
 # References
@@ -914,4 +948,4 @@ Based on this comprehensive forensic analysis, we find <strong>Breast Cancer</st
 ```{r session_info}
 sessionInfo()
 ```
-
+</div>

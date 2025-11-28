@@ -5,6 +5,7 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: true
+      toc_depth: 3
     theme: flatly
     highlight: tango
     df_print: paged
