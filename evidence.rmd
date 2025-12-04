@@ -71,6 +71,17 @@ output:
   <p class="casefile-text">
     Think of this dataset as the master <strong>case ledger</strong>: each row is a patient, each column is a clue, and our
     analytic tools will determine whether the evidence is strong enough to convict breast cancer of its deadly impact.
-  </p>
+<div style="display: flex; justify-content: space-between; margin-top: 0px;">
+  <!-- Left / Back -->
+  <a href="defendant.html" class="casefile-button">
+    ⬅️ Previous
+  </a>
 
+  <!-- Right / Next -->
+  <a href="crime_scene.html" class="casefile-button">
+    Next ➡️
+  </a>
 </div>
+</p>
+</div>
+
