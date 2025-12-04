@@ -948,4 +948,17 @@ Based on this comprehensive forensic analysis, we find <strong>Breast Cancer</st
 ```{r session_info}
 sessionInfo()
 ```
+
+<div style="display: flex; justify-content: space-between; margin-top: 0px;">
+  <!-- Left / Back -->
+  <a href="closing.html" class="casefile-button">
+    ⬅️ Previous
+  </a>
+
+  <!-- Right / Next -->
+  <a href="index.html" class="casefile-button">
+    To Front 
+  </a>
+</div>
+
 </div>
