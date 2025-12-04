@@ -180,3 +180,14 @@ cancer %>%
 
 Other features like estrogen and progesterone receptor status also influence survival. Victims with positive receptor status tend to have longer survival times, indicating that the defendant's behavior may vary based on these biological markers.
 
+<div style="display: flex; justify-content: space-between; margin-top: 0px;">
+  <!-- Left / Back -->
+  <a href="evidence.html" class="casefile-button">
+    ⬅️ Previous
+  </a>
+
+  <!-- Right / Next -->
+  <a href="evidence_against.html" class="casefile-button">
+    Next ➡️
+  </a>
+</div>

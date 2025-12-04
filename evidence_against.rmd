@@ -270,3 +270,15 @@ cv_summary
 ```
 
 The 5-fold cross-validation assesses the predictive performance of our Cox model by partitioning the data into training and testing sets. The concordance index (C-index) quantifies how well the model discriminates between patients with different survival outcomes. A C-index closer to 1 indicates excellent predictive ability, while a value around 0.5 suggests no better than random guessing. Our model's mean C-index of `r round(cv_summary$mean_cindex, 3)` (SD `r round(cv_summary$sd_cindex, 3)`) demonstrates its utility in predicting who is at highest risk of death. 
+
+<div style="display: flex; justify-content: space-between; margin-top: 0px;">
+  <!-- Left / Back -->
+  <a href="crime_scene.html" class="casefile-button">
+    ⬅️ Previous
+  </a>
+
+  <!-- Right / Next -->
+  <a href="closing.html" class="casefile-button">
+    Next ➡️
+  </a>
+</div>
