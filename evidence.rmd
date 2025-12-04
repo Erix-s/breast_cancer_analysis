@@ -24,15 +24,21 @@ output:
   <h2 class="casefile-subtitle">Exhibit A: Breast Cancer Dataset</h2>
   
   <p class="casefile-text">
-    This evidence file draws on the <strong>Breast Cancer</strong> dataset curated by Reihaneh Namdari and hosted on Kaggle.  
+    This evidence file draws on the Breast Cancer dataset curated by Reihaneh Namdari and hosted on Kaggle.  
     It is a cleaned subset of the US <em>Surveillance, Epidemiology, and End Results (SEER)</em> cancer registry and focuses on
     women diagnosed with infiltrating duct and lobular carcinoma between 2006 and 2010.
   </p>
-
+  
   <ul class="casefile-bullets">
     <li><strong>Source:</strong> SEER population-based cancer registry (US National Cancer Institute), curated for Kaggle.</li>
     <li><strong>Sample size:</strong> 4,024 female patients with breast cancer.</li>
     <li><strong>Time frame:</strong> Diagnoses from 2006–2010, with follow-up for survival in months.</li>
+    <li>
+      <strong>Kaggle Dataset Page:</strong>  
+      <a href="https://www.kaggle.com/datasets/reihanenamdari/breast-cancer" target="_blank">
+        https://www.kaggle.com/datasets/reihanenamdari/breast-cancer
+      </a>
+    </li>
   </ul>
 
   <h3 class="casefile-subheading">Key Evidence Fields</h3>
