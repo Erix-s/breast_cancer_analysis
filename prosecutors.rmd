@@ -96,7 +96,7 @@ output:
     </p>
   </section>
   
-  <img src="photos/gabble.jpeg" 
+  <img src="photos/Jiseung Lee.jpeg" 
    alt="Breast Cancer Mugshot" 
    style="width:300px; border:3px solid black;">
 <div style="display: flex; justify-content: space-between; margin-top: 0px;">
