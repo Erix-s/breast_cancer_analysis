@@ -3,7 +3,7 @@ title: "Proposal"
 output: github_document
 ---
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, warning = FALSE}
 # Load necessary libraries
 library(tidyverse)
 library(knitr)
@@ -16,7 +16,7 @@ Kevin Guzman kg3006@cumc.columbia.edu
 Edmund Wong ecw2178@cumc.columbia.edu  
 Jiseung Lee jl6458@cumc.columbia.edu  
 
-## Proposal(draft):
+## Proposal:
 _This project aims to investigate survival outcomes in a pressing women’s health issue, emphasizing the demographic and biological factors that shape disease prognosis and health equity._
 
 **Primary Topic: Breast Cancer Survival and Risk Patterns**  

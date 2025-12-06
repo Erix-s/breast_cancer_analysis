@@ -91,3 +91,48 @@
   background: #9a0000;
   transform: translateY(-2px);
 }
+
+.navbar {
+  background: #f2e7c9 !important;        /* manila folder */
+  border-bottom: 3px solid #b29f79;      /* slightly darker tan border */
+  font-family: "Courier New", monospace; /* typewriter */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Brand title */
+.navbar-brand {
+  color: #2b2b2b !important;             /* dark charcoal text */
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Right-side nav links */
+.navbar-nav > li > a {
+  color: #3b3b3b !important;             /* darker typewriter ink */
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Hover effect */
+.navbar-nav > li > a:hover,
+.navbar-brand:hover {
+  background: rgba(0,0,0,0.08) !important; /* faint typewriter smudge */
+  color: #000 !important;
+}
+
+/* Active page highlight */
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background: rgba(0,0,0,0.12) !important;
+  color: #000 !important;
+}
+
+/* GitHub icon */
+.navbar-nav .fa-github {
+  font-size: 20px;
+  margin-left: 3px;
+  color: #3b3b3b !important;
+}

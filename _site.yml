@@ -1,6 +1,17 @@
 name: "Yay internet!"
 output_dir: "."
-
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: prosecutors.html
+    - icon: fa-github fa-lg
+      href: https://github.com/Erix-s/breast_cancer_analysis/
+    - icon: fa-envelope fa-lg
+      href: mailto:<sx2402@cumc.columbia.edu>
+    - icon: fa-file-alt       # document icon
+      text: "Proposal"
+      href: proposal.html
 output:
   html_document:
     toc: true
